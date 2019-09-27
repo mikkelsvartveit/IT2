@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fargeting</title>
+</head>
+<body>
+    <script>
+        var fargeA = "Rød";
+        var tallA1 = Math.ceil(Math.random() * 5);
+        var tallA2 = Math.ceil(Math.random() * 5) + 5;
+        console.log(fargeA + ", " + tallA1 + ", " + tallA2);
+        
+        var fargeB = "Blå";
+        var tallB1 = Math.ceil(Math.random() * 5);
+        var tallB2 = Math.ceil(Math.random() * 5) + 5;
+        console.log(fargeB + ", " + tallB1 + ", " + tallB2);
+        
+        var fargeC = "Grønn";
+        var tallC1 = Math.ceil(Math.random() * 5);
+        var tallC2 = Math.ceil(Math.random() * 5) + 5;
+        console.log(fargeC + ", " + tallC1 + ", " + tallC2);
+        
+        if(tallA1 <= tallB1 && tallA1 <= tallC1) {
+            document.write(fargeA + " har det laveste tall1.");
+        }
+        else if(tallB1 <= tallA1 && tallB1 <= tallC1) {
+            document.write(fargeB + " har det laveste tall1.");
+        }
+        else if(tallC1 <= tallA1 && tallC1 <= tallB1) {
+            document.write(fargeC + " har det laveste tall1.");
+        }
+        
+        document.write("<br><br>");
+        
+        if(tallA2 >= tallB2 && tallA2 >= tallC2) {
+            document.write(fargeA + " har det høyeste tall2.");
+        }
+        else if(tallB2 >= tallA2 && tallB2 >= tallC2) {
+            document.write(fargeB + " har det høyeste tall2.");
+        }
+        else if(tallC2 >= tallA2 && tallC2 >= tallB2) {
+            document.write(fargeC + " har det høyeste tall2.");
+        }
+        
+        document.write("<br><br>");
+        
+        if(tallA2 <= tallB2 && tallA2 >= tallC2 || tallA2 <= tallC2 && tallA2 >= tallB2) {
+            document.write(fargeA + " har det midterste tall2.");
+        }
+        else if(tallB2 <= tallA2 && tallB2 >= tallC2 || tallB2 <= tallC2 && tallB2 >= tallA2) {
+            document.write(fargeB + " har det midterste tall2.");
+        }
+        else if(tallC2 <= tallA2 && tallC2 >= tallB2 || tallC2 <= tallB2 && tallC2 >= tallA2) {
+            document.write(fargeC + " har det midterste tall2.");
+        }
+    </script>
+</body>
+</html>

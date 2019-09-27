@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var kortType = ["Spar", "Kløver", "Ruter", "Hjerter"];
+        var kortTall = ["Ess", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Knekt", "Dame", "Konge"];
+        
+        var fullStokk = [];
+        for(var i = 0; i < kortType.length; i++) {
+            for(var j = 0; j < kortTall.length; j++) {
+                fullStokk.push(kortType[i] + " " + kortTall[j]);
+            }
+        }
+        
+        function stokkKort(stokk) {
+            var nyStokk = [];
+            
+            while(stokk.length > 0) {
+                var num = Math.floor(Math.random() * stokk.length);
+                nyStokk.push(stokk[num]);
+                stokk.splice(num, 1);
+            }
+            
+            return nyStokk;
+        }
+        
+        stokk = stokkKort(fullStokk);
+        for(var i = 0; i < stokk.length; i++) {
+            document.write(stokk[i] + "<br>");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<script>
+    var antallYatzy = 0;
+    while(true) {
+        antallYatzy++;
+        
+        var terning = [];
+        for(var i = 0; i < 6; i++) {
+            terning.push(Math.ceil(Math.random() * 6));
+        }
+        
+        if(terning[0] == terning[1] && terning[1] == terning[2] && terning[2] == terning[3] && terning[3] == terning[4] && terning[4] == terning[5]) {
+            break;
+        }
+    }
+    
+    document.write("Det tok " + antallYatzy + " kast for å få maxiyatzy (" + terning + ")<br>");
+    
+    var antallStraight = 0;
+    while(true) {
+        antallStraight++;
+        
+        var terning = [];
+        for(var i = 0; i < 6; i++) {
+            terning.push(Math.ceil(Math.random() * 6));
+        }
+        
+        if(terning.includes(1) && terning.includes(2) && terning.includes(3) && terning.includes(4) && terning.includes(5) && terning.includes(6)) {
+            break;
+        }
+    }
+    
+    document.write("Det tok " + antallStraight + " kast for å få full straight (" + terning + ")<br>");
+</script>

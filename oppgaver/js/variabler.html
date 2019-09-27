@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Variabler</title>
+</head>
+<body>
+    <p>Sum: <span id="sum"></span></p>
+    <p>Differanse: <span id="diff"></span></p>
+    <p>Produkt: <span id="produkt"></span></p>
+    <p>Kvotient:<span id="kvotient"></span></p>
+    <p>Rest: <span id="mod"></span></p>
+    
+    <script>
+        var tall1 = 154;
+        var tall2 = 21;
+        
+        var sum = tall1 + tall2;
+        var diff = tall1 - tall2;
+        var produkt = tall1 * tall2;
+        var kvotient = tall1 / tall2;
+        var mod = tall1 % tall2;
+        
+        document.getElementById("sum").innerHTML = sum;
+        document.getElementById("diff").innerHTML = diff;
+        document.getElementById("produkt").innerHTML = produkt;
+        document.getElementById("kvotient").innerHTML = kvotient;
+        document.getElementById("mod").innerHTML = mod;
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parti</title>
+    
+    <style>
+        .borgerlig, .rodgronn {
+            height: 20px;
+            width: 0px;
+            float: left;
+        }
+        
+        .rodgronn {
+            background-color: red;
+        }
+        
+        .borgerlig {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var r = 0;
+        var sv = 0;
+        var ap = 0;
+        var sp = 0;
+        var mdg = 0;
+        var krf = 0;
+        var v = 0;
+        var h = 0;
+        var frp = 0;
+        
+        function visBlokk() {
+            var rodgronn = r+sv+ap+sp+mdg;
+            var borgerlig = krf+v+h+frp;
+            // alert("Borgerlig: " + borgerlig + "   Rødgrønn: " + rodgronn);
+            
+            document.getElementById("rodgronn").style.width = (rodgronn * 20) + "px";
+            document.getElementById("borgerlig").style.width = (borgerlig * 20) + "px";
+        }
+    </script>
+    
+    <p>Trykk for å stemme på et parti.</p>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; r++;">Rødt</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; sv++;">SV</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; ap++;">Arbeiderpartiet</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; sp++;">Senterpartiet</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; mdg++;">MDG</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; krf++;">KrF</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; v++;">Venstre</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; h++;">Høyre</button>
+    <button onclick="document.getElementById('p1').innerHTML = this.innerHTML; frp++;">FrP</button>
+    
+    <p>Du har stemt på <span id="p1">...</span></p>
+    
+    <br><br>
+    <button onclick="visBlokk()">Vis blokkfordeling</button>
+    <br><br>
+    
+    <div id="rodgronn" class="rodgronn"></div>
+    <div id="borgerlig" class="borgerlig"></div>
+</body>
+</html>

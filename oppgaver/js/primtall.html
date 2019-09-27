@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Primtall</title>
+</head>
+<body>
+    <script>
+        function isPrime(number) {
+            var i = 2;
+            
+            if(Math.abs(number) <= 1) {
+                return false;
+            }
+            
+            while(i < number) {
+                if(number % i == 0) {
+                    return false;
+                }
+                i++;
+            }
+            return true;
+        }
+        
+        function printPrimes(number) {
+            for(var i = 0; i <= number; i++) {
+                if(isPrime(i)) {
+                    document.write(i + ", ");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
