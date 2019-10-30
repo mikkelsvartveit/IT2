@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <style>
+        .rodkant {
+            border: 3px solid red;
+        }
+        
+        .blakant {
+            border: 3px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Overskrift</h1>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus est fuga itaque repudiandae ad, obcaecati cupiditate delectus facilis, illo natus tenetur nihil accusamus dolores laudantium vel, laborum quis laboriosam maxime aspernatur molestiae corporis quaerat expedita, quae! Rerum nulla sit consequuntur et at, nesciunt vero, laboriosam impedit! Non officiis, optio! Nulla facilis libero fuga recusandae sint cupiditate delectus quis dolores repellat, aut nisi assumenda maiores maxime quae nam impedit dolorum ratione magnam minus. Saepe perspiciatis velit, cum eligendi dignissimos praesentium quod? Odio quo, accusamus voluptate autem, ex numquam quas aperiam assumenda officia architecto quia odit voluptatum nesciunt laudantium saepe atque sunt.</p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus est fuga itaque repudiandae ad, obcaecati cupiditate delectus facilis, illo natus tenetur nihil accusamus dolores laudantium vel, laborum quis laboriosam maxime aspernatur molestiae corporis quaerat expedita, quae! Rerum nulla sit consequuntur et at, nesciunt vero, laboriosam impedit! Non officiis, optio! Nulla facilis libero fuga recusandae sint cupiditate delectus quis dolores repellat, aut nisi assumenda maiores maxime quae nam impedit dolorum ratione magnam minus. Saepe perspiciatis velit, cum eligendi dignissimos praesentium quod? Odio quo, accusamus voluptate autem, ex numquam quas aperiam assumenda officia architecto quia odit voluptatum nesciunt laudantium saepe atque sunt.</p>
+    
+    <a id="lenkeNRK"></a>
+    <a id="lenkeTV2"></a>
+    
+    <script>
+        var h1 = document.querySelector("h1");
+        var p = document.querySelectorAll("p");
+        
+        h1.innerHTML = "Overskriften er nå endret";
+        p[0].innerHTML = "Det første avsnittet er nå endret";
+        p[1].innerHTML = "Det andre avsnittet er nå endret";
+        
+        document.body.innerHTML += "<ol><li>Listepunkt 1</li></ol>";
+        
+        var ol = document.querySelector("ol");
+        ol.innerHTML += "<li class='rodkant'>Listepunkt 2</li>";
+        
+        h1 = document.querySelector("h1");
+        h1.className = "blakant";
+        
+        document.querySelectorAll("li")[1].className = "";
+        
+        var nrk = document.querySelector("#lenkeNRK");
+        nrk.innerHTML = "NRK";
+        var tv2 = document.querySelector("#lenkeTV2");
+        tv2.innerHTML = "TV2";
+        
+        nrk.setAttribute("href", "http://nrk.no");
+        tv2.setAttribute("href", "http://tv2.no");
+        tv2.setAttribute("target", "_blank");
+    </script>
+</body>
+</html>

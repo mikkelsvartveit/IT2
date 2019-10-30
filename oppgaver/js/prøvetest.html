@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function funksjon3(tall) {
+            var teller = 2;
+            var isTrue = false;
+            while(teller <= (tall/2) && !isTrue) {
+                
+                if(tall%teller != 0) {
+                    teller++;
+                }
+                else {
+                    isTrue = true;
+                }
+            }
+            if(tall = teller*2 && !isTrue) {
+                console.log("gratulerer");
+            }
+        }
+        
+        funksjon3(19);
+    </script>
+</body>
+</html>

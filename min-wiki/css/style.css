@@ -1,0 +1,205 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-Light.ttf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/OpenSans-SemiBold.ttf");
+    font-weight: 600;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Open Sans";
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding-bottom: 50px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 300;
+    text-align: center;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 400;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #4287F5;
+    font-weight: 600;
+    transition-duration: 0.1s;
+}
+
+a:hover {
+    color: #7DABF5;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 20px;
+    box-shadow: 0px 0px 8px #AAA;
+}
+
+nav a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition-duration: 0.1s;
+}
+
+nav a:hover {
+    color: #888;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th, td {
+    border: 1px solid #666;
+    padding: 5px 20px 5px 10px;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+form > div {
+    width: 50%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+form h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+input[type="text"], input[type="date"] {
+    font-family: "Open Sans";
+    font-size: 16px;
+    width: 100%;
+    height: 50px;
+    margin: 10px 0 30px 0;
+    padding: 10px 15px;
+    border: 2px solid #333;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+input[type="submit"] {
+    font-weight: 600;
+    padding: 10px 20px;
+    width: auto;
+}
+
+.flexbox {
+    display: flex;
+    align-items: center;
+}
+
+.flexbox > * {
+    margin: 0 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.article {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    overflow: auto;
+}
+
+.ingress {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+}
+
+.article-image {
+    width: 200px;
+    float: right;
+    margin: 0 0 0 40px;
+}
+
+.article-image img {
+    width: 200px;
+}
+
+.article-image figcaption {
+    font-size: 14px;
+    text-align: center;
+    color: #666;
+}
+
+.kuber {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.kuber > div {
+    margin: 20px;
+    padding: 20px 20px 0 20px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 8px #888;
+    transition-duration: 0.1s;
+}
+
+.kuber > div:hover {
+    transform: scale(1.05);
+}
+
+.kuber img {
+    width: 150px;
+    padding: 0 20px;
+}
+
+.kuber h3 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#kubeInfo {
+    max-width: 800px;
+    margin: auto;
+}
+
+#kubeInfo img {
+    width: 256px;
+    height: 256px;
+    flex-shrink: 0;
+    margin-right: 40px;
+}

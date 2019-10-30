@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var table = document.createElement("table");
+        
+        for(var i = 0; i < 3; i++) {
+            var td = document.createElement("td");
+            
+            for(var j = 0; j < 4; j++) {
+                var tr = document.createElement("tr");
+                tr.innerHTML = "Tekst";
+                td.appendChild(tr);
+            }
+            
+            table.appendChild(td);
+        }
+        
+        document.body.appendChild(table);
+    </script>
+</body>
+</html>

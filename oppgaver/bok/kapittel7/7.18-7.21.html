@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <style>
+        .red {
+            background-color: red;
+        }
+        
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <script>
+        var ul = document.createElement("ul");
+        for(var i = 0; i < 12; i++) {
+            var li = document.createElement("li");
+            li.innerHTML = "Dette er et listepunkt";
+
+            if(i%2 == 0) {
+                li.className = "red";
+            } else {
+                li.className = "blue";
+            }
+
+            ul.appendChild(li);
+        }
+        document.body.appendChild(ul);
+        
+        function lagListe(antall) {
+            var ul = document.createElement("ul");
+            for(var i = 0; i < antall; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = "Dette er et listepunkt";
+
+                if(i%2 == 0) {
+                    li.className = "red";
+                } else {
+                    li.className = "blue";
+                }
+
+                ul.appendChild(li);
+            }
+            
+            document.body.appendChild(ul);
+        }
+        
+        lagListe(100);
+    </script>
+</body>
+</html>

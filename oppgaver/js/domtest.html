@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Overskrift 1</h1>
+    <h2>Overskrift 2</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt veritatis impedit facere perferendis quidem, neque, necessitatibus vitae alias hic illo voluptates ab blanditiis quos, ut! Velit, consequuntur, sint. Suscipit quas cupiditate ratione, amet maiores, adipisci esse dignissimos sit reiciendis. Accusantium aut, voluptates sapiente, laudantium non iusto dolores nesciunt consequatur consectetur debitis incidunt a in, repellat eveniet veniam. Eius, quaerat cum omnis, officiis voluptas, itaque doloribus provident culpa molestias saepe ea dolores voluptate. Maxime sapiente iste minima, asperiores adipisci aliquam tempora animi dolorum iure eum, nemo eius natus labore atque laudantium earum! Praesentium nam iure voluptatem! Ipsa totam perspiciatis eum quae.</p>
+    
+    <script>
+        var body = document.body;
+        var h2 = document.querySelector("h2");
+        var headers = document.querySelectorAll("h1+h2");
+        
+        function run() {
+            h2.innerHTML = "Overskrift 2 er nå endret";
+            h2.align = "center";
+            h2.style.color = "blue";
+            h2.style.backgroundColor = "yellow";
+        }
+    </script>
+</body>
+</html>
