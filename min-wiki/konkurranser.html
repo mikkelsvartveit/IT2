@@ -1,50 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Kokurranser - Rubiks kube Wiki</title>
-    
+
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <nav>
-        <div class="nav-block">
-            <a href="index.html">Rubiks kube Wiki</a>
-        </div>
-        
-        <div class="nav-block">
-            <a href="kuber.html">Kuber</a>
-            <a href="rekorder.html">Rekorder</a>
-            <a href="konkurranser.html">Konkurranser</a>
-        </div>
-    </nav>
-    
-    <h1>Konkurranser</h1>
-    
-    <p class="ingress">Speedcubing er en sport hvor målet er å løse Rubiks kube på så kort tid som mulig. Flere ganger årlig arrangeres det konkurranser i Norge (og resten av verden), hvor deltagere løser Rubiks kube på tid. Det er over 150 aktive speedcubere i Norge, og de beste løser den på under 10 sekunder! Påmelding til NM 2019 er åpen nå. Fyll ut skjemaet nedenfor for å melde deg på.</p>
-    
-    <form name="pamelding">
-        <div>
-            <h3>Fornavn: </h3>
-            <input type="text" name="fornavn" placeholder="Ola">
-            <br>
+    <div class="page">
+        <nav>
+            <div class="nav-block">
+                <a href="index.html">Rubiks kube Wiki</a>
+            </div>
+
+            <div class="nav-block">
+                <a href="kuber.html">Kuber</a>
+                <a href="rekorder.html">Rekorder</a>
+                <a href="konkurranser.html">Konkurranser</a>
+            </div>
+        </nav>
+
+        <div class="article">
+            <h1>Konkurranser</h1>
             
-            <h3>Etternavn: </h3>
-            <input type="text" name="etternavn" placeholder="Nordmann">
-        </div>
-        
-        <div>
-            <h3>Fødselsdato: </h3>
-            <input type="date" name="fodselsdato">
+            <figure class="article-image">
+                <img src="img/nkf.png" alt="Norges Kubeforbund">
+                <figcaption>NM 2020 arrangeres av Norges Kubeforbund</figcaption>
+            </figure>
+
+            <p class="ingress">Speedcubing er en sport hvor målet er å løse Rubiks kube på så kort tid som mulig. Flere ganger årlig arrangeres det konkurranser i Norge (og resten av verden), hvor deltagere løser Rubiks kube på tid. </p>
+            <p class="ingress">Norges kubeforbund jobber med å fremme interessen for løsing av Rubiks kube og andre lignende puslespill i Norge. Dette gjør vi ved å arrangere konkurranser, kurs og uformelle kvelder hvor Rubiks kube har fokus. Om du synest dette høres spennede ut, så kan du besøke en av konkurransene vi arrangerer, eller ta kontakt direkte. Det er over 150 aktive speedcubere i Norge, og de beste løser den på under 10 sekunder! Påmelding til NM 2019 er åpen nå. Fyll ut skjemaet nedenfor for å melde deg på.</p>
+
+            <form id="pamelding" name="pamelding" onsubmit="return false;">
+                <div>
+                    <h3>Fornavn: </h3>
+                    <input type="text" id="fornavn" name="fornavn" placeholder="Ola" value="Mikkel" required>
+                    <br>
+
+                    <h3>Etternavn: </h3>
+                    <input type="text" id="etternavn" name="etternavn" placeholder="Nordmann" value="Svartveit" required>
+                </div>
+
+                <div>
+                    <h3>Fødselsdato: </h3>
+                    <input type="date" id="fodselsdato" name="fodselsdato" value="2001-08-14" required>
+
+                    <h3>Jeg vil delta på:</h3>
+                    <input id="kube2x2" type="checkbox" checked><span>2x2 (kr 100)</span>
+                    <input id="kube3x3" type="checkbox" checked><span>3x3 (kr 150)</span>
+                    <br>
+                    <input id="kube4x4" type="checkbox" checked><span>4x4 (kr 250)</span>
+                    <input id="kube5x5" type="checkbox" checked><span>5x5 (kr 300)</span>
+                </div>
+
+                <input type="submit" name="submit" value="Gå videre">
+            </form>
             
-            <h3>Jeg vil delta på:</h3>
-            <input type="checkbox"><span>2x2</span>
-            <input type="checkbox"><span>3x3</span>
-            <input type="checkbox"><span>4x4</span>
-            <input type="checkbox"><span>5x5</span>
+            <div id="sammendrag" class="hidden">
+                <div>
+                    <h3 class="text-center">Personalia</h3>
+                    <img id="avatar" src="img/avatar.svg" alt="Avatar">
+                    <p id="navn" class="text-center"></p>
+                    <p id="alder" class="text-center"></p>
+                </div>
+                
+                <div>
+                    <h3>Påmeldte eventer</h3>
+                    <div id="eventsImg"></div>
+                    
+                    <h3>Å betale</h3>
+                    <table id="kvittering"></table>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <script>
+        document.querySelector("#pamelding").addEventListener("submit", registrer);
+
+        // Tar en dato-variabel som argument og 
+        // returnerer en string på formatet 2. juli 2018
+        function skrivDato(dato) {
+            var dag = dato.getDate();
+            var maaned;
+            var aar = dato.getFullYear();
+            
+            switch(dato.getMonth()) {
+                case 0:
+                    maaned = "januar";
+                    break;
+                case 1:
+                    maaned = "februar";
+                    break;
+                case 2:
+                    maaned = "mars";
+                    break;
+                case 3:
+                    maaned = "april";
+                    break;
+                case 4:
+                    maaned = "mai";
+                    break;
+                case 5:
+                    maaned = "juni";
+                    break;
+                case 6:
+                    maaned = "juli";
+                    break;
+                case 7:
+                    maaned = "august";
+                    break;
+                case 8:
+                    maaned = "september";
+                    break;
+                case 9:
+                    maaned = "oktober";
+                    break;
+                case 10:
+                    maaned = "november";
+                    break;
+                case 11:
+                    maaned = "desember";
+                    break;
+            }
+            
+            return dag + ". " + maaned + " " + aar;
+        }
         
-        <input type="submit" name="submit" value="Gå videre">
-    </form>
+        function registrer() {
+            // Lagrer verdier fra skjemaet i variabler
+            var fornavn = document.querySelector("#fornavn").value;
+            var etternavn = document.querySelector("#etternavn").value;
+            var fodselsdato = new Date(document.querySelector("#fodselsdato").value);
+            var events = [document.querySelector("#kube2x2").checked, document.querySelector("#kube3x3").checked, document.querySelector("#kube4x4").checked, document.querySelector("#kube5x5").checked];
+            
+            // Finner alder ved hjelp av fødselsdato
+            var alder = Math.floor((new Date() - fodselsdato) / 3.15576e+10);
+            
+            if(events.includes(true)) {
+                // Skriver ut et sammendrag av påmeldingen
+                var navnEl = document.querySelector("#navn");
+                var alderEl = document.querySelector("#alder");
+                navnEl.innerHTML = "<b>" + fornavn + " " + etternavn + "</b>";
+                alderEl.innerHTML = "Født: <b>" + skrivDato(fodselsdato) + "</b> (" + alder + " år)";
+
+                var totalPris = 0;
+                var eventsImgEl = document.querySelector("#eventsImg");
+                var tableEl = document.querySelector("#kvittering");
+                eventsImgEl.innerHTML = "";
+                tableEl.innerHTML = "";
+                
+                if(events[0]) {
+                    var img = document.createElement("img");
+                    img.setAttribute("src", "img/2x2.svg");
+                    eventsImgEl.appendChild(img);
+                    
+                    var tr = document.createElement("tr");
+                    var tdEvent = document.createElement("td");
+                    var tdPris = document.createElement("td");
+                    tdEvent.innerHTML = "2x2";
+                    tdPris.innerHTML = "kr 100,-";
+                    totalPris += 100;
+                    tr.appendChild(tdEvent);
+                    tr.appendChild(tdPris);
+                    tableEl.appendChild(tr);
+                    
+                }
+                if(events[1]) {
+                    var img = document.createElement("img");
+                    img.setAttribute("src", "img/3x3.svg");
+                    eventsImgEl.appendChild(img);
+                    
+                    var tr = document.createElement("tr");
+                    var tdEvent = document.createElement("td");
+                    var tdPris = document.createElement("td");
+                    tdEvent.innerHTML = "3x3";
+                    tdPris.innerHTML = "kr 150,-";
+                    totalPris += 150;
+                    tr.appendChild(tdEvent);
+                    tr.appendChild(tdPris);
+                    tableEl.appendChild(tr);
+                }
+                if(events[2]) {
+                    var img = document.createElement("img");
+                    img.setAttribute("src", "img/4x4.svg");
+                    eventsImgEl.appendChild(img);
+                    
+                    var tr = document.createElement("tr");
+                    var tdEvent = document.createElement("td");
+                    var tdPris = document.createElement("td");
+                    tdEvent.innerHTML = "4x4";
+                    tdPris.innerHTML = "kr 250,-";
+                    totalPris += 250;
+                    tr.appendChild(tdEvent);
+                    tr.appendChild(tdPris);
+                    tableEl.appendChild(tr);
+                }
+                if(events[3]) {
+                    var img = document.createElement("img");
+                    img.setAttribute("src", "img/5x5.svg");
+                    eventsImgEl.appendChild(img);
+                    
+                    var tr = document.createElement("tr");
+                    var tdEvent = document.createElement("td");
+                    var tdPris = document.createElement("td");
+                    tdEvent.innerHTML = "5x5";
+                    tdPris.innerHTML = "kr 300,-";
+                    totalPris += 300;
+                    tr.appendChild(tdEvent);
+                    tr.appendChild(tdPris);
+                    tableEl.appendChild(tr);
+                }
+                
+                var tr = document.createElement("tr");
+                var tdEvent = document.createElement("td");
+                var tdPris = document.createElement("td");
+                tdEvent.innerHTML = "<b>Totalpris</b>";
+                tdPris.innerHTML = "<b>kr " + totalPris + ",-</b>";
+                tr.appendChild(tdEvent);
+                tr.appendChild(tdPris);
+                tableEl.appendChild(tr);
+                
+                // Fjerner "hidden"-klassen slik at sammendraget over påmelding synes
+                document.querySelector("#sammendrag").className = "";
+
+                // Scroller siden til sammendrag-delen
+                window.location.hash = "";
+                window.location.hash = "#sammendrag";
+            } 
+            
+            else {
+                // Gir feilmelding hvis ingen eventer er valgt
+                alert("Du må velge én eller flere eventer å delta på!");
+            }
+        }
+    </script>
 </body>
+
 </html>

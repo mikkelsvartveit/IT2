@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <p id="text"></p>
+    
+    <script>
+        document.body.addEventListener("keypress", function(e) {
+            document.querySelector("#text").innerHTML += e.key;
+        });
+        
+        document.body.addEventListener("keydown", function(e) {
+            if(e.key == "Backspace") {
+                var text = document.querySelector("#text").innerHTML;
+                document.querySelector("#text").innerHTML = text.substr(0, text.length - 1);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>click-hendelse</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: "Century Gothic", Arial, sans-serif;
+            font-size: 14px;
+        }
+        p {
+            background-color: #f05a3f;
+            padding: 20px;
+        }
+        p:hover {
+            cursor: pointer;
+        }
+        .gul {
+            border: 5px solid yellow;
+        }
+        .bla {
+            border: 5px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <p id="avsnitt"> Trykk på meg! </p>
+   
+    <script>
+        var avsnittE1 = document.querySelector("#avsnitt");
+        avsnittE1.addEventListener("click", nytekst);
+        avsnittE1.addEventListener("click", nykant);
+
+        function nytekst(){
+            avsnittE1.innerHTML = "Du trykket på meg!";
+        }
+        
+        function nykant() {
+            if(avsnittE1.className == "gul") {
+                avsnittE1.className = "bla";
+            }
+            else {
+                avsnittE1.className = "gul";
+            }
+        }
+    </script>
+</body>
+</html>

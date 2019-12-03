@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ABC-formel</title>
+    
+    <style>
+        input {
+            width: 40px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>ABC-formel</h1>
+    <p>Skriv inn likning: </p>
+    <p><input type="text" id="a" placeholder="a"> x<sup>2</sup> + <input type="text" id="b" placeholder="b"> x + <input type="text" id="c" placeholder="c"> = 0</p>
+    
+    <p id="result"></p>
+    
+    <script>
+        document.querySelector("#a").addEventListener("input", calculate);
+        document.querySelector("#b").addEventListener("input", calculate);
+        document.querySelector("#c").addEventListener("input", calculate);
+        
+        function calculate() {
+            var a = document.querySelector("#a").value;
+            var b = document.querySelector("#b").value;
+            var c = document.querySelector("#c").value;
+            
+            if(a && b && c) {
+                var result1 = ((-b + Math.sqrt(b**2 - 4*a*c)) / 2*a);
+                var result2 = ((-b - Math.sqrt(b**2 - 4*a*c)) / 2*a);
+            
+                if(result1 == result2) {
+                    var output = "x = " + result1;
+                }
+                else if(result1 != null) {
+                    var output = "x<sub>1</sub> = " + result1 + "<br>x<sub>2</sub> = " + result2;
+                }
+                else {
+                    var output = "Ingen løsning";
+                }
+
+                document.querySelector("#result").innerHTML = output;
+            } else {
+                document.querySelector("#result").innerHTML = "";
+            }
+        }
+    </script>
+</body>
+</html>

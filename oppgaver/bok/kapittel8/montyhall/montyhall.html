@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monty hall</title>
+    <style>
+        body{
+            background-color: #323232;
+            font-family: "Century Gothic", Arial , sans-serif;
+            font-size: 14px;
+            color: #f2f2f2;
+        }
+        img:hover{
+            cursor: pointer;
+        }
+        #tilbakemelding {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monty Hall</h1>
+    <p>Hvilken dør velger du?</p>
+    <img id="r" src="rod.png" width="227" height="324" alt="Dør">
+    <img id="g" src="gronn.png" width="227" height="324" alt="Dør">
+    <img id="b" src="blaa.png" width="227" height="324" alt="Dør">
+    
+    <p id="tilbakemelding"></p>
+    
+    <script>
+        var elements = [document.querySelector("#r"), document.querySelector("#g"), document.querySelector("#b")];
+        var riktigDoer = Math.floor(Math.random() * 3);
+        var tilbakemelding = document.querySelector("#tilbakemelding");
+        
+        for(var i = 0; i < 3; i++) {
+            elements[i].addEventListener("click", valg1);
+        }
+        
+        function valg1() {
+            do {
+                var rand = Math.floor(Math.random() * 3);
+            } while(elements[rand] == this || rand == riktigDoer);
+            
+            elements[rand].setAttribute("src", "geit.png");
+            
+            for(var i = 0; i < 3; i++) {
+                elements[i].removeEventListener("click", valg1);
+                elements[i].addEventListener("click", valg2);
+            }
+
+            function valg2() {
+                for(var i = 0; i < 3; i++) {
+                    if(this == elements[i]) {
+                        if(i == riktigDoer) {
+                            this.setAttribute("src", "bil.png");
+                        } else {
+                            this.setAttribute("src", "geit.png");
+                        }
+                    }
+                }
+                
+                for(var i = 0; i < 3; i++) {
+                    elements[i].removeEventListener("click", valg2);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

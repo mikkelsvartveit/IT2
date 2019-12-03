@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monty hall</title>
+    <style>
+        body{
+            background-color: #323232;
+            font-family: "Century Gothic", Arial , sans-serif;
+            font-size: 14px;
+            color: #f2f2f2;
+        }
+        img:hover{
+            cursor: pointer;
+        }
+        #tilbakemelding {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monty Hall</h1>
+    <p>Hvilken dør velger du?</p>
+    <img id="r" src="rod.png" width="227" height="324" alt="Dør">
+    <img id="g" src="gronn.png" width="227" height="324" alt="Dør">
+    <img id="b" src="blaa.png" width="227" height="324" alt="Dør">
+    
+    <p id="tilbakemelding"></p>
+    
+    <script>
+        var elements = [document.querySelector("#r"), document.querySelector("#g"), document.querySelector("#b")];
+        var tall = Math.floor(Math.random() * 3);
+        var tilbakemelding = document.querySelector("#tilbakemelding");
+        
+        for(var i = 0; i < 3; i++) {
+            if(i == tall) {
+                elements[i].addEventListener("click", bil);
+            }
+            else {
+                elements[i].addEventListener("click", geit);
+            }
+        }
+        
+        function geit() {
+            this.setAttribute("src", "geit.png");
+            tilbakemelding.innerHTML = "Haha du suger";
+        }
+        
+        function bil() {
+            this.setAttribute("src", "bil.png");
+            tilbakemelding.innerHTML = "Flink gutt";
+        }
+    </script>
+</body>
+</html>

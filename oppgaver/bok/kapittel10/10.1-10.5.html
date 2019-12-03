@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10.1</title>
+    <link rel="stylesheet" href="brukerinput.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="form">
+        <h1>Bø Turisthotell</h1>
+
+        <input type="text" name="navn" id="navn" placeholder="Navn"><br>
+
+        <input type="number" name="telefon" id="telefon" placeholder="Telefon"><br>
+
+        Antall gjester: 
+        <select name="gjester" id="gjester">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select><br>
+
+        Frokost (kr 200): <input type="radio" name="frokost" value="frokost" id="frokost">Ja
+        <input type="radio" name="frokost">Nei
+
+        <h3>Ekstraaktiviteter:</h3>
+        <input type="checkbox" id="boSommarland">Dagspass til Bø Sommarland (kr 300)<br>
+        <input type="checkbox" id="hoytOgLavt">Dagspass til Høyt og Lavt klatrepark (kr 250)<br>
+        <input type="checkbox" id="fruktgard">Omvisning på fruktgård (kr 200)<br>
+        <input type="checkbox" id="telemarkskanalen">Dagstur på Telemarkskanalen (kr 800)<br>
+        <br>
+
+        <button id="registrer">Registrer</button>
+        
+        <p id="pris"></p>
+        
+        <script>
+        function visPris() {
+            var antallGjester = document.querySelector("#gjester").value;
+            var totalPris = antallGjester * 500;
+            
+            if(document.querySelector("#frokost").checked) {
+                totalPris += antallGjester * 200;
+            }
+            
+            if(document.querySelector("#hoytOgLavt").checked) {
+                totalPris += antallGjester * 300;
+            }
+            
+            if(document.querySelector("#fruktgard").checked) {
+                totalPris += antallGjester * 300;
+            }
+            
+            if(document.querySelector("#telemarkskanalen").checked) {
+                totalPris += antallGjester * 300;
+            }
+            
+            if(document.querySelector("#boSommarland").checked) {
+                totalPris += antallGjester * 300;
+            }
+            
+            document.querySelector("#pris").innerHTML = "kr " + totalPris + ",-";
+        }
+            
+        document.querySelector("#registrer").addEventListener("click", visPris);
+        </script>
+    </div>
+</body>
+</html>

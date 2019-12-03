@@ -41,6 +41,10 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    margin-top: 30px;
+}
+
 a {
     text-decoration: none;
     color: #4287F5;
@@ -58,11 +62,11 @@ nav {
     align-items: center;
     height: 70px;
     padding: 0 20px;
-    box-shadow: 0px 0px 8px #AAA;
+    background-color: #444;
 }
 
 nav a {
-    color: inherit;
+    color: white;
     text-decoration: none;
     margin: 0 15px;
     font-weight: 600;
@@ -72,22 +76,22 @@ nav a {
 }
 
 nav a:hover {
-    color: #888;
+    color: #A1A1A1;
 }
 
-table {
+table#rekorder {
     border-collapse: collapse;
     margin: auto;
 }
 
-th, td {
+#rekorder th, #rekorder td {
     border: 1px solid #666;
     padding: 5px 20px 5px 10px;
 }
 
 form {
     max-width: 600px;
-    margin: auto;
+    margin: 60px auto 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -117,10 +121,29 @@ input[type="text"], input[type="date"] {
     background-color: transparent;
 }
 
+input[type="checkbox"] {
+    margin: 15px 5px 0px 15px;
+}
+
 input[type="submit"] {
+    font-family: "Open Sans";
+    font-size: 16px;
     font-weight: 600;
-    padding: 10px 20px;
+    text-transform: uppercase;
+    color: #FFF;
+    margin-top: 20px;
+    padding: 12px 20px;
     width: auto;
+    border: 2px solid #333;
+    box-sizing: border-box;
+    background-color: #333;
+}
+
+.page {
+    width: 800px;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 0 10px #888;
+    padding-bottom: 50px;
 }
 
 .flexbox {
@@ -132,19 +155,22 @@ input[type="submit"] {
     margin: 0 20px;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .article {
     max-width: 800px;
-    margin: 0 auto 60px auto;
+    margin: 0 60px 20px 60px;
     overflow: auto;
 }
 
 .ingress {
     max-width: 800px;
-    margin: 0 auto 40px auto;
 }
 
 .article-image {
@@ -164,9 +190,10 @@ input[type="submit"] {
 }
 
 .kuber {
+    width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
 }
 
 .kuber > div {
@@ -202,4 +229,39 @@ input[type="submit"] {
     height: 256px;
     flex-shrink: 0;
     margin-right: 40px;
+}
+
+
+#sammendrag {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#sammendrag > div {
+    margin: 0 50px;
+}
+
+#eventsImg {
+    display: flex;
+    justify-content: left;
+}
+
+#eventsImg img {
+    width: 60px;
+}
+
+#avatar {
+    width: 150px;
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+#kvittering td:first-child {
+    padding-right: 100px;
+}
+
+#navn, #alder {
+    margin: 5px;
 }
