@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>    
+    <script>
+        function minsteTall(array) {
+            var minsteTall = array[0];
+            for(var i = 0; i < array.length; i++) {
+                if(array[i] < minsteTall) {
+                    minsteTall = array[i];
+                }
+            }
+            return minsteTall;
+        }
+    </script>
+</body>
+</html>

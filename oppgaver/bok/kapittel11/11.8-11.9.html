@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mine favorittfrukter</h1>
+    <input type="checkbox" class="checkbox" value="Eple">Eple<br>
+    <input type="checkbox" class="checkbox" value="Pære">Pære<br>
+    <input type="checkbox" class="checkbox" value="Banan">Banan<br>
+    <input type="checkbox" class="checkbox" value="Kiwi">Kiwi<br>
+    <input type="checkbox" class="checkbox" value="Appelsin">Appelsin<br>
+    <input type="checkbox" class="checkbox" value="Mango">Mango<br>
+    <input type="checkbox" class="checkbox" value="Ananas">Ananas<br>
+    <input type="checkbox" class="checkbox" value="Jordbær">Jordbær<br>
+    <input type="checkbox" class="checkbox" value="Druer">Druer<br>
+    <input type="checkbox" class="checkbox" value="Bringebær">Bringebær<br>
+    
+    <button onclick="run()">Kjør</button>
+    
+    <h3>Dine favorittfrukter er:</h3>
+    <div class="frukter"></div>
+    
+    <script>
+        document.body.addEventListener("click", run);
+        
+        function run() {
+            document.querySelector(".frukter").innerHTML = "";
+            var checkboxEl = document.querySelectorAll(".checkbox");
+            for(var i = 0; i < checkboxEl.length; i++) {
+                if(checkboxEl[i].checked) {
+                    var pEl = document.createElement("p");
+                    pEl.innerHTML = checkboxEl[i].value;
+                    document.querySelector(".frukter").appendChild(pEl);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
