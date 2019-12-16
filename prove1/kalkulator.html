@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prøve IT2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="form">
+        <h1>Kalkulator</h1>
+        
+        <p id="guide">Skriv inn to tall, velg operator i nedtrekksmenyen og trykk på kalkuler for å regne ut. Trykk på Delete på tastaturet for å fjerne alle utregninger.</p>
+
+        <div class="flex">
+            <input type="number" id="tall1" placeholder="Tall 1">
+
+            <select name="operator" id="operator">
+                <option value="pluss">+</option>
+                <option value="minus">-</option>
+                <option value="gange">*</option>
+                <option value="dele">/</option>
+                <option value="modulus">%</option>
+            </select>
+
+            <input type="number" id="tall2" placeholder="Tall 2">
+            
+            <button id="kalkuler">Kalkuler</button>
+        </div>
+
+        <p id="resultat"></p>
+    </div>
+
+    <script>
+        function kalkuler() {
+            // Henter verdiene for tallene og operatoren
+            var tall1 = Number(document.querySelector("#tall1").value);
+            var tall2 = Number(document.querySelector("#tall2").value);
+            var operator = document.querySelector("#operator").value;
+
+            // Gjør utregning avhengig av operatoren som er valgt
+            if (operator == "pluss") {
+                var resultat = tall1 + " + " + tall2 + " = " + (tall1 + tall2);
+            } 
+            else if (operator == "minus") {
+                var resultat = tall1 + " - " + tall2 + " = " + (tall1 - tall2);
+            } 
+            else if (operator == "gange") {
+                var resultat = tall1 + " * " + tall2 + " = " + (tall1 * tall2);
+            } 
+            else if (operator == "dele") {
+                var resultat = tall1 + " / " + tall2 + " = " + (tall1 / tall2);
+            } 
+            else if (operator == "modulus") {
+                var resultat = tall1 + " % " + tall2 + " = " + (tall1 % tall2);
+            }
+            
+            // Legger regnestykket i et span-element
+            var spanEl = document.createElement("span");
+            spanEl.innerHTML = resultat + "<br>";
+            
+            // Setter span-elementets class til operatoren, dette gir den en egen farge
+            spanEl.className = operator;
+            
+            // Appender span-elementet til resultat-elementet
+            var resultatEl = document.querySelector("#resultat");
+            resultatEl.appendChild(spanEl);
+        }
+        
+        function slett(e) {
+            // Hvis knappen som trykkes er Delete, fjernes alt i resultat-elementet
+            if(e.key == "Delete") {
+                var resultatEl = document.querySelector("#resultat");
+                resultatEl.innerHTML = "";
+            }
+        }
+        
+        // Event listeners:
+        var knappEl = document.querySelector("#kalkuler");
+        knappEl.addEventListener("click", kalkuler);
+        
+        document.body.addEventListener("keydown", slett)
+    </script>
+</body>
+
+</html>

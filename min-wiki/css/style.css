@@ -47,13 +47,13 @@ h3 {
 
 a {
     text-decoration: none;
-    color: #4287F5;
+    color: #F68521;
     font-weight: 600;
     transition-duration: 0.1s;
 }
 
 a:hover {
-    color: #7DABF5;
+    color: #FAAA62;
 }
 
 nav {
@@ -62,13 +62,21 @@ nav {
     align-items: center;
     height: 70px;
     padding: 0 20px;
-    background-color: #444;
+    background-color: #fff;
+    /*border-bottom: 2px solid #F68521;*/
+    box-shadow: 0 4px 5px -4px #888;
+}
+
+.nav-block {
+    display: flex;
+    margin: 0 -5px;
 }
 
 nav a {
-    color: white;
+    line-height: 68px;
+    color: #F68521;
     text-decoration: none;
-    margin: 0 15px;
+    padding: 0 20px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -76,7 +84,13 @@ nav a {
 }
 
 nav a:hover {
-    color: #A1A1A1;
+    color: #F68521;
+    background-color: #eee;
+}
+
+nav a.active {
+    color: #F68521;
+    border-bottom: 2px solid #F68521;
 }
 
 table#rekorder {
@@ -84,7 +98,8 @@ table#rekorder {
     margin: auto;
 }
 
-#rekorder th, #rekorder td {
+#rekorder th,
+#rekorder td {
     border: 1px solid #666;
     padding: 5px 20px 5px 10px;
 }
@@ -109,16 +124,18 @@ form h3 {
     margin: 0;
 }
 
-input[type="text"], input[type="date"] {
+input[type="text"],
+input[type="date"] {
     font-family: "Open Sans";
     font-size: 16px;
     width: 100%;
-    height: 50px;
     margin: 10px 0 30px 0;
-    padding: 10px 15px;
-    border: 2px solid #333;
+    padding: 12px 10px;
+    border: none;
+    border-bottom: 2px solid #F88248;
     box-sizing: border-box;
     background-color: transparent;
+    outline: none;
 }
 
 input[type="checkbox"] {
@@ -130,13 +147,22 @@ input[type="submit"] {
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
-    color: #FFF;
+    color: #F88248;
     margin-top: 20px;
-    padding: 12px 20px;
+    padding: 14px 22px;
     width: auto;
-    border: 2px solid #333;
+    border: none;
+    /*border: 2px solid #F88248;*/
+    border-radius: 0px;
+    box-shadow: 0 0 4px #666;
     box-sizing: border-box;
-    background-color: #333;
+    background-color: transparent;
+    transition-duration: 0.1s;
+    outline: none;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0 0 8px #666;
 }
 
 .page {
@@ -166,11 +192,11 @@ input[type="submit"] {
 .card {
     color: inherit;
     text-decoration: none;
-    
+
     width: 600px;
     margin: 50px auto 20px auto;
     box-shadow: 0 0 8px #888;
-    
+
     display: flex;
     align-items: center;
 }
@@ -239,6 +265,7 @@ input[type="submit"] {
     border-radius: 3px;
     box-shadow: 0px 0px 8px #888;
     transition-duration: 0.1s;
+    cursor: pointer;
 }
 
 .kuber > div:hover {
@@ -299,6 +326,7 @@ input[type="submit"] {
     padding-right: 100px;
 }
 
-#navn, #alder {
+#navn,
+#alder {
     margin: 5px;
 }

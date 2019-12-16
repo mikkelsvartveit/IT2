@@ -18,7 +18,7 @@
             <div class="nav-block">
                 <a href="kuber.html">Kuber</a>
                 <a href="rekorder.html">Rekorder</a>
-                <a href="konkurranser.html">Konkurranser</a>
+                <a class="active" href="konkurranser.html">Konkurranser</a>
             </div>
         </nav>
 
@@ -36,26 +36,26 @@
             <form id="pamelding" name="pamelding" onsubmit="return false;">
                 <div>
                     <h3>Fornavn: </h3>
-                    <input type="text" id="fornavn" name="fornavn" placeholder="Ola" value="Mikkel" required>
+                    <input type="text" id="fornavn" name="fornavn" placeholder="Ola" required>
                     <br>
 
                     <h3>Etternavn: </h3>
-                    <input type="text" id="etternavn" name="etternavn" placeholder="Nordmann" value="Svartveit" required>
+                    <input type="text" id="etternavn" name="etternavn" placeholder="Nordmann" required>
                 </div>
 
                 <div>
                     <h3>Fødselsdato: </h3>
-                    <input type="date" id="fodselsdato" name="fodselsdato" value="2001-08-14" required>
+                    <input type="date" id="fodselsdato" name="fodselsdato" required>
 
                     <h3>Jeg vil delta på:</h3>
-                    <input id="kube2x2" type="checkbox" checked><span>2x2 (kr 100)</span>
-                    <input id="kube3x3" type="checkbox" checked><span>3x3 (kr 150)</span>
+                    <input id="kube2x2" type="checkbox"><span>2x2 (kr 100)</span>
+                    <input id="kube3x3" type="checkbox"><span>3x3 (kr 150)</span>
                     <br>
-                    <input id="kube4x4" type="checkbox" checked><span>4x4 (kr 250)</span>
-                    <input id="kube5x5" type="checkbox" checked><span>5x5 (kr 300)</span>
+                    <input id="kube4x4" type="checkbox"><span>4x4 (kr 250)</span>
+                    <input id="kube5x5" type="checkbox"><span>5x5 (kr 300)</span>
                 </div>
 
-                <input type="submit" name="submit" value="Gå videre">
+                <input type="submit" name="submit" value="Meld på">
             </form>
             
             <div id="sammendrag" class="hidden">
