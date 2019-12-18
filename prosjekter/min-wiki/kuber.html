@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 
 <head>
     <meta charset="UTF-8">
@@ -28,25 +28,25 @@
             <p class="ingress">Rubiks kube kommer i mange forskjellige størrelser og varianter. Her er noen av de vanligste. Trykk på bildene for å lære mer om hver kube.</p>
 
             <div class="kuber">
-                <div id="2x2" onclick="visKube(2);">
-                    <img src="img/2x2.svg" alt="">
+                <div id="kube2x2">
+                    <img src="img/2x2.svg" alt="2x2">
                     <h3>2x2</h3>
                 </div>
 
-                <div id="3x3" onclick="visKube(3);">
-                    <img src="img/3x3.svg" alt="">
+                <div id="kube3x3">
+                    <img src="img/3x3.svg" alt="3x3">
                     <h3>3x3</h3>
                 </div>
             </div>
 
             <div class="kuber">
-                <div id="4x4" onclick="visKube(4);">
-                    <img src="img/4x4.svg" alt="">
+                <div id="kube4x4">
+                    <img src="img/4x4.svg" alt="4x4">
                     <h3>4x4</h3>
                 </div>
 
-                <div id="5x5" onclick="visKube(5);">
-                    <img src="img/5x5.svg" alt="">
+                <div id="kube5x5">
+                    <img src="img/5x5.svg" alt="5x5">
                     <h3>5x5</h3>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 <h2>NxN</h2>
 
                 <div class="flexbox">
-                    <img src="img/3x3.svg" alt="">
+                    <img src="img/3x3.svg" alt="NxN">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate quis dolor totam, fugiat sapiente ut fuga dicta sint optio vel minus error, laboriosam accusamus. Aut, quibusdam. Illo nulla expedita ea ut asperiores minima accusamus, laudantium provident fugiat commodi, aperiam voluptate.</p>
                 </div>
             </div>
@@ -64,7 +64,7 @@
 
     <script>
         // Funksjon som viser informasjon om en gitt type kube
-        function visKube(kube) {
+        function visKube() {            
             // Lager variabler for alle elementene som skal endres på
             var div = document.querySelector("#kubeInfo");
             var h2 = document.querySelector("#kubeInfo h2");
@@ -72,19 +72,22 @@
             var p = document.querySelector("#kubeInfo p");
 
             // Sjekker hvilken kube som skal vises, og endrer siden deretter
-            if (kube == 2) {
+            if (this.id == "kube2x2") {
                 h2.innerHTML = "2x2";
                 img.setAttribute("src", "img/2x2.jpg");
                 p.innerHTML = "2x2-kuben, også kjent som Pocket Cube, er en mindre og enklere variant av Rubiks Kube. Den kom på markedet kort tid etter den klassiske 3x3-kuben. Kuben består av 8 biter, hvorav alle er hjørnebiter. De beste i verden løser 2x2-kuben konsekvent på under 2 sekunder!";
-            } else if (kube == 3) {
+            } 
+            else if (this.id == "kube3x3") {
                 h2.innerHTML = "3x3";
                 img.setAttribute("src", "img/3x3.jpg");
-                p.innerHTML = "3x3 er den klassiske Rubiks kuben. Den ble oppfunnet i 1974 av den ungarske professoren Ernő Rubik. Etter at kuben ble lansert internasjonalt i 1980, ble det solgt over 100 millioner eksemplarer på verdensbasis på kun to år. Til tross for at en 3x3-kube kan blandes på 43 252 003 274 489 856 000 forskjellige måter, kan del alltid løses på 20 trekk eller mindre!";
-            } else if (kube == 4) {
+                p.innerHTML = "3x3 er den klassiske Rubiks kuben. Den ble oppfunnet i 1974 av den ungarske professoren Ernő Rubik. Etter at kuben ble lansert internasjonalt i 1980, ble det solgt over 100 millioner eksemplarer på verdensbasis på kun to år. Til tross for at en 3x3-kube kan blandes på 43 252 003 274 489 856 000 forskjellige måter, kan den alltid løses på 20 trekk eller mindre!";
+            } 
+            else if (this.id == "kube4x4") {
                 h2.innerHTML = "4x4";
                 img.setAttribute("src", "img/4x4.jpg");
                 p.innerHTML = "4x4-kuben ble lansert i 1981 under navnet Rubik's Revenge. Denne kuben var en ny utfordring for de som allerede kunne løse 3x3-kuben. Den ble riktignok oppfunnet av Sebestény Péter, men ble likevel kalt Rubik's Revenge av markedsføringsårsaker.";
-            } else if (kube == 5) {
+            } 
+            else if (this.id == "kube5x5") {
                 h2.innerHTML = "5x5";
                 img.setAttribute("src", "img/5x5.jpg");
                 p.innerHTML = "De første 5x5-kubene ble solgt i Hong Kong fra 1983. I Japan noen år senere fikk den tilnavnet Professors's Cube. 5x5 ser tilsynelatende enda vanskeligere ut enn 4x4, men fremgangsmåten for å løse 5x5 likner på 4x4-metoden. For de som allerede kan løse 3x3 og 4x4, er ikke 5x5 så vanskelig å lære.";
@@ -96,6 +99,12 @@
             // Scroller siden til info-delen
             window.location.hash = "";
             window.location.hash = "#kubeInfo";
+        }
+        
+        // Event listeners:
+        kuberEl = document.querySelectorAll(".kuber div");
+        for(var i = 0; i < kuberEl.length; i++) {
+            kuberEl[i].addEventListener("click", visKube);
         }
     </script>
 </body>

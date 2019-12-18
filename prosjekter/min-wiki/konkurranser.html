@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 
 <head>
     <meta charset="UTF-8">
-    <title>Kokurranser - Rubiks kube Wiki</title>
+    <title>Konkurranser - Rubiks kube Wiki</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -24,7 +24,7 @@
 
         <div class="article">
             <h1>Konkurranser</h1>
-            
+
             <figure class="article-image">
                 <img src="img/nkf.png" alt="Norges Kubeforbund">
                 <figcaption>NM 2020 arrangeres av Norges Kubeforbund</figcaption>
@@ -57,7 +57,7 @@
 
                 <input type="submit" name="submit" value="Meld på">
             </form>
-            
+
             <div id="sammendrag" class="hidden">
                 <div>
                     <h3 class="text-center">Personalia</h3>
@@ -65,11 +65,11 @@
                     <p id="navn" class="text-center"></p>
                     <p id="alder" class="text-center"></p>
                 </div>
-                
+
                 <div>
                     <h3>Påmeldte eventer</h3>
                     <div id="eventsImg"></div>
-                    
+
                     <h3>Å betale</h3>
                     <table id="kvittering"></table>
                 </div>
@@ -78,16 +78,14 @@
     </div>
 
     <script>
-        document.querySelector("#pamelding").addEventListener("submit", registrer);
-
         // Tar en dato-variabel som argument og 
         // returnerer en string på formatet 2. juli 2018
         function skrivDato(dato) {
             var dag = dato.getDate();
             var maaned;
             var aar = dato.getFullYear();
-            
-            switch(dato.getMonth()) {
+
+            switch (dato.getMonth()) {
                 case 0:
                     maaned = "januar";
                     break;
@@ -125,22 +123,32 @@
                     maaned = "desember";
                     break;
             }
-            
+
             return dag + ". " + maaned + " " + aar;
         }
-        
+
         function registrer() {
             // Lagrer verdier fra skjemaet i variabler
             var fornavn = document.querySelector("#fornavn").value;
             var etternavn = document.querySelector("#etternavn").value;
             var fodselsdato = new Date(document.querySelector("#fodselsdato").value);
             var events = [document.querySelector("#kube2x2").checked, document.querySelector("#kube3x3").checked, document.querySelector("#kube4x4").checked, document.querySelector("#kube5x5").checked];
-            
+
             // Finner alder ved hjelp av fødselsdato
             var alder = Math.floor((new Date() - fodselsdato) / 3.15576e+10);
-            
-            if(events.includes(true)) {
-                // Skriver ut et sammendrag av påmeldingen
+
+            // Gir feilmelding hvis fødselsdato er ugyldig
+            if (alder < 0 || alder > 150) {
+                alert("Ugyldig fødselsdato! Prøv på nytt.")
+            }
+
+            // Gir feilmelding hvis ingen eventer er valgt
+            else if (!events.includes(true)) {
+                alert("Du må velge én eller flere eventer å delta på!");
+            }
+
+            // Skriver ut et sammendrag av påmeldingen
+            else {
                 var navnEl = document.querySelector("#navn");
                 var alderEl = document.querySelector("#alder");
                 navnEl.innerHTML = "<b>" + fornavn + " " + etternavn + "</b>";
@@ -151,12 +159,12 @@
                 var tableEl = document.querySelector("#kvittering");
                 eventsImgEl.innerHTML = "";
                 tableEl.innerHTML = "";
-                
-                if(events[0]) {
+
+                if (events[0]) {
                     var img = document.createElement("img");
                     img.setAttribute("src", "img/2x2.svg");
                     eventsImgEl.appendChild(img);
-                    
+
                     var tr = document.createElement("tr");
                     var tdEvent = document.createElement("td");
                     var tdPris = document.createElement("td");
@@ -166,13 +174,13 @@
                     tr.appendChild(tdEvent);
                     tr.appendChild(tdPris);
                     tableEl.appendChild(tr);
-                    
+
                 }
-                if(events[1]) {
+                if (events[1]) {
                     var img = document.createElement("img");
                     img.setAttribute("src", "img/3x3.svg");
                     eventsImgEl.appendChild(img);
-                    
+
                     var tr = document.createElement("tr");
                     var tdEvent = document.createElement("td");
                     var tdPris = document.createElement("td");
@@ -183,11 +191,11 @@
                     tr.appendChild(tdPris);
                     tableEl.appendChild(tr);
                 }
-                if(events[2]) {
+                if (events[2]) {
                     var img = document.createElement("img");
                     img.setAttribute("src", "img/4x4.svg");
                     eventsImgEl.appendChild(img);
-                    
+
                     var tr = document.createElement("tr");
                     var tdEvent = document.createElement("td");
                     var tdPris = document.createElement("td");
@@ -198,11 +206,11 @@
                     tr.appendChild(tdPris);
                     tableEl.appendChild(tr);
                 }
-                if(events[3]) {
+                if (events[3]) {
                     var img = document.createElement("img");
                     img.setAttribute("src", "img/5x5.svg");
                     eventsImgEl.appendChild(img);
-                    
+
                     var tr = document.createElement("tr");
                     var tdEvent = document.createElement("td");
                     var tdPris = document.createElement("td");
@@ -213,7 +221,7 @@
                     tr.appendChild(tdPris);
                     tableEl.appendChild(tr);
                 }
-                
+
                 var tr = document.createElement("tr");
                 var tdEvent = document.createElement("td");
                 var tdPris = document.createElement("td");
@@ -222,20 +230,18 @@
                 tr.appendChild(tdEvent);
                 tr.appendChild(tdPris);
                 tableEl.appendChild(tr);
-                
+
                 // Fjerner "hidden"-klassen slik at sammendraget over påmelding synes
                 document.querySelector("#sammendrag").className = "";
 
                 // Scroller siden til sammendrag-delen
                 window.location.hash = "";
                 window.location.hash = "#sammendrag";
-            } 
-            
-            else {
-                // Gir feilmelding hvis ingen eventer er valgt
-                alert("Du må velge én eller flere eventer å delta på!");
             }
         }
+
+        // Event listeners:
+        document.querySelector("#pamelding").addEventListener("submit", registrer);
     </script>
 </body>
 
