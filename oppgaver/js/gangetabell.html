@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var gangeTabell = [];
+        for(var i = 1; i <= 10; i++) {
+            var rad = [];
+            for(var j = 1; j <= 10; j++) {
+                rad.push(i * j);
+            }
+            gangeTabell.push(rad);
+        }
+        
+        for(rad of gangeTabell) {
+            var tekst = "";
+            for(tall of rad) {
+                tekst += tall + "\t";
+            }
+            console.log(tekst);
+        }
+    </script>
+</body>
+</html>

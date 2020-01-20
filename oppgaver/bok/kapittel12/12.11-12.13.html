@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function lagTabell(overskrifter, innhold) {
+            var tableEl = document.createElement("table");
+            var tbodyEl = document.createElement("tbody");
+            
+            var overskriftRad = "<tr>";
+            for(var i = 0; i < overskrifter.length; i++) {
+                overskriftRad += "<th>" + overskrifter[i] + "</th>";
+            }
+            overskriftRad += "</tr>";
+            tbodyEl.innerHTML += overskriftRad;
+            
+            var innholdRader = "";
+            for(var i = 0; i < innhold.length; i++) {
+                var rad = "<tr>";
+                for(var j in innhold[i]) {
+                    rad += "<td>" + innhold[i][j] + "</td>";
+                }
+                rad += "</tr>";
+                innholdRader += rad;
+            }
+            tbodyEl.innerHTML += innholdRader;
+            tableEl.appendChild(tbodyEl);
+            document.body.appendChild(tableEl);
+        }
+        
+        var overskrift = ["Forkortelse", "Bilmerke", "Land"];
+        var bilmerker = [
+            {forkortelse: "BMW", bilmerke: "Bayerische Motoren Werke", land: "Tyskland"},
+            {forkortelse: "VW", bilmerke: "Volkswagen", land: "Tyskland"},
+            {forkortelse: "MB", bilmerke: "Mercedes-Benz", land: "Tyskland"},
+            {forkortelse: "Tesla", bilmerke: "Tesla", land: "USA"},
+            {forkortelse: "Volvo", bilmerke: "Volvo", land: "Sverige", nyverdi: "test"}
+        ];
+        
+        lagTabell(overskrift, bilmerker);
+    </script>
+</body>
+</html>

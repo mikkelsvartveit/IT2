@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <p id="resultat"></p>
+    
+    <script>
+        var resultatEl = document.querySelector("#resultat");
+        
+        var quiz = [
+            {
+                sporsmaal: "Hvilken av disse er ikke en Audi-modell?",
+                alternativer: ["A3", "A6", "A9"],
+                fasit: [false, false, true]
+            },
+            {
+                sporsmaal: "Hvor mange sylindre har motoren i Audi RS3?",
+                alternativer: ["5", "6", "8"],
+                fasit: [true, false, false]
+            },
+            {
+                sporsmaal: "Hvilket land kommer Audi fra",
+                alternativer: ["Tyskland", "Østerrike", "Italia"],
+                fasit: [true, false, false]
+            },
+            {
+                sporsmaal: "Hva heter Audi sin sportsbil med V10-motor?",
+                alternativer: ["S8", "R8", "RS8"],
+                fasit: [false, true, false]
+            },
+            {
+                sporsmaal: "Hva heter Audi sin minste bil",
+                alternativer: ["A1", "B1", "Q1"],
+                fasit: [true, false, false]
+            },
+            {
+                sporsmaal: "Hvilken Audi-modell kjører Mikkel",
+                alternativer: ["A3", "A4", "A6"],
+                fasit: [false, false, true]
+            }
+        ];
+        
+        for(var i = 0; i < quiz.length; i++) {
+            var divEl = document.createElement("div");
+            
+            var sporsmålEl = document.createElement("h3");
+            var alternativerEl = document.createElement("div");
+            
+            sporsmålEl.innerHTML = quiz[i].sporsmaal;
+            for(var j = 0; j < quiz[0].alternativer.length; j++) {
+                var checkboxEl = document.createElement("input");
+                checkboxEl.type = "radio";
+                checkboxEl.value = quiz[i].fasit[j];
+                alternativerEl.appendChild(checkboxEl);
+                alternativerEl.innerHTML += quiz[i].alternativer[j] + "<br>";
+            }
+            
+            divEl.appendChild(sporsmålEl);
+            divEl.appendChild(alternativerEl);
+            document.body.appendChild(divEl);
+        }
+        
+        var buttonEl = document.createElement("button");
+        buttonEl.innerHTML = "Sjekk svar";
+        buttonEl.addEventListener("click", sjekkSvar);
+        document.body.appendChild(buttonEl);
+        
+        function sjekkSvar() {
+            var checkboxes = document.querySelectorAll("input[type='radio']");
+            
+            var poeng = 0;
+            
+            for(var i = 0; i < checkboxes.length; i++) {
+                if(checkboxes[i].checked) {
+                    if(checkboxes[i].value == "true") {
+                        poeng += 1;
+                    }
+                }
+            }
+            
+            resultatEl.innerHTML = "Du fikk " + poeng + " poeng!";
+        }
+    </script>
+</body>
+</html>

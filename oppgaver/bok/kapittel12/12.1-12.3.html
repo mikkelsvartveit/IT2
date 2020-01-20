@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var meg = {
+            navn: "Mikkel Svartveit",
+            fodselsaar: 2001,
+            favorittfilm: "Ford v Ferrari",
+            favorittall: 69,
+            favorittmat: ["Kebabrull", "Kebabtallerken", "Kebabpizza"]
+        };
+        
+        console.log(meg.navn);
+        console.log(meg.fodselsaar);
+        console.log(meg.favorittfilm);
+        console.log(meg["favorittall"]);
+        console.log(meg["favorittmat"][0]);
+        console.log(meg["favorittmat"][1]);
+        console.log(meg["favorittmat"][2]);
+        
+        console.log("\n\n");
+        
+        for(var i in meg) {
+            console.log(i + ": " + meg[i]);
+        }
+    </script>
+</body>
+</html>

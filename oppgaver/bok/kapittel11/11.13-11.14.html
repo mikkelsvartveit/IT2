@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var array1 = [2, 1, 7, 5];
+        var array2 = ["melon", "eple", "appelsin", "ananas", "pære"];
+        var array3 = [2, 10, 104, 17, 82, 109];
+        
+        array1.sort();
+        array2.sort();
+        array3.sort(function(a, b) {console.log(a + " - " + b + " = " + (a - b)); return a - b});
+        
+        console.log(array1);
+        console.log(array2);
+        console.log(array3);
+    </script>
+</body>
+</html>

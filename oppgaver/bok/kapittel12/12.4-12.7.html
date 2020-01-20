@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var meg = {
+            fornavn: "Mikkel",
+            etternavn: "Svartveit",
+            fodselsaar: 2001,
+            favorittfilm: "Ford v Ferrari",
+            favorittall: 69,
+            favorittmat: ["Kebabrull", "Kebabtallerken", "Kebabpizza"],
+            
+            fulltNavn: function() {
+                return this.fornavn + " " + this.etternavn;
+            },
+            
+            hvaSkalJegHaTilMiddag: function() {
+                var rand = Math.floor(Math.random() * this.favorittmat.length);
+                return this.favorittmat[rand];
+            }
+        };
+        
+        meg.favorittfarge = "blå";
+        console.log(meg.favorittfarge);
+        
+        console.log(meg.fulltNavn());
+        console.log(meg.hvaSkalJegHaTilMiddag());
+    </script>
+</body>
+</html>
