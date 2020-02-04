@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    
+    <style>
+        canvas {
+            border: 2px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <h2>Oppgave 1</h2>
+    <canvas id="canvas1" width="300" height="300"></canvas>
+    
+    <h2>Oppgave 2</h2>
+    <canvas id="canvas2" width="800" height="500"></canvas>
+    
+    <script>
+        // OPPGAVE 1
+        var canvas = document.querySelector("#canvas1");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "red";
+        ctx.fillRect(50, 50, 200, 200);
+        ctx.fillStyle = "green";
+        ctx.fillRect(75, 75, 150, 150);
+        ctx.fillStyle = "blue";
+        ctx.fillRect(100, 100, 100, 100);
+        
+        
+        // OPPGAVE 2
+        canvas = document.querySelector("#canvas2");
+        ctx = canvas.getContext("2d");
+        
+        var xpos = [0, 0, 0, 0, 0];        
+        var interval = setInterval(animate, 15);
+        
+        function animate() {        
+            ctx.clearRect(0, 0, 800, 500);
+            ctx.fillStyle = "red";
+            
+            for(var i = 0; i < xpos.length; i++) {
+                xpos[i] += Math.random() * 3 + 1;
+                ctx.fillRect(xpos[i], 100*i + 25, 50, 50);
+                
+                if(xpos[i] >= 750) {
+                    clearInterval(interval);
+                    var vinner = i+1;
+                    
+                    setTimeout(function() {
+                        alert("Firkant " + vinner + " vant!");
+                    }, 50);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
