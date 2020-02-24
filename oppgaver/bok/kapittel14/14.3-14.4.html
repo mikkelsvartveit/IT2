@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas width="500" height="300" id="canvas"></canvas>
+
+    <script>
+        var canvas = document.querySelector("#canvas");
+        var ctx = canvas.getContext("2d");
+
+        function tegnTilfeldigeRektangler(antall) {
+            for (var i = 0; i < antall; i++) {
+                var xKoodrinat = Math.random() * (canvas.width - 50);
+                var yKoodrinat = Math.random() * (canvas.height - 50);
+                var storrelse = Math.random() * 70 + 30;
+
+                ctx.fillStyle = "hsl(" + i * 30 + ", 100%, 70%)";
+                ctx.fillRect(xKoodrinat, yKoodrinat, storrelse, storrelse);
+            }
+        }
+
+        tegnTilfeldigeRektangler(10);
+    </script>
+</body>
+
+</html>

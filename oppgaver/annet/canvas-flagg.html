@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: #ccc;
+        }
+
+        canvas {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="220" height="160" id="norskflagg"></canvas>
+    <canvas width="220" height="160" id="japanskflagg"></canvas>
+
+    <script>
+        // NORSK FLAGG
+        var canvas = document.querySelector("#norskflagg");
+        var ctx = canvas.getContext("2d");
+
+        // Rødt
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, 220, 160);
+
+        // Hvitt
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 60, 220, 40);
+        ctx.fillRect(60, 0, 40, 160);
+
+        // Blått
+        ctx.fillStyle = "blue";
+        ctx.fillRect(0, 70, 220, 20);
+        ctx.fillRect(70, 0, 20, 160);
+
+
+        // JAPANSK FLAGG
+        canvas = document.querySelector("#japanskflagg");
+        ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, 220, 160);
+
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(110, 80, 45, 0, 2 * Math.PI);
+        ctx.fill();
+    </script>
+</body>
+
+</html>

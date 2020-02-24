@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas width="600" height="400" id="canvas"></canvas>
+
+    <script>
+        var canvas = document.querySelector("#canvas");
+        var ctx = canvas.getContext("2d");
+
+        function tegnTre(x, y) {
+            ctx.fillStyle = "green";
+            ctx.fillRect(x, y, 100, 100);
+
+            ctx.fillStyle = "brown";
+            ctx.fillRect(x + 40, y + 50, 20, 120);
+        }
+
+        tegnTre(0, 0);
+        tegnTre(150, 100);
+        tegnTre(300, 50);
+    </script>
+</body>
+
+</html>
