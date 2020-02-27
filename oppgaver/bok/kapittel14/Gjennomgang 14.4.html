@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas width="600" height="1000" id="canvas"></canvas>
+
+    <script>
+        var canvas = document.querySelector("#canvas");
+        var ctx = canvas.getContext("2d");
+
+        var data = [
+            { beskrivelse: "Mandag", verdi: 5 },
+            { beskrivelse: "Tirsdag", verdi: 3 },
+            { beskrivelse: "Onsdag", verdi: 1 },
+            { beskrivelse: "Torsdag", verdi: 2 },
+            { beskrivelse: "Fredag", verdi: 5 },
+            { beskrivelse: "Lørdag", verdi: 6 },
+            { beskrivelse: "Søndag", verdi: 4 }
+        ];
+
+        var tekstBredde = 200;
+        var totalBredde = canvas.width;
+        var soyleBredde = totalBredde - tekstBredde - 10;
+        canvas.height = data.length * 30;
+
+        var max = 0;
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].verdi > max) {
+                max = data[i].verdi;
+            }
+        }
+
+        ctx.font = "24px 'Century Gothic'";
+        ctx.textAlign = "end";
+        ctx.textBaseline = "hanging";
+
+        for (var i = 0; i < data.length; i++) {
+            var andel = (data[i].verdi / max) * soyleBredde;
+
+            ctx.fillStyle = "#323232";
+            ctx.fillText(data[i].beskrivelse + "(" + data[i].verdi + ")", tekstBredde, (30 * i) + 3);
+
+            ctx.fillStyle = "hsl(" + i * 30 + ", 100%, 70%)";
+            ctx.fillRect(tekstBredde + 5, (30 * i) + 3, andel, 24);
+        }
+    </script>
+</body>
+
+</html>

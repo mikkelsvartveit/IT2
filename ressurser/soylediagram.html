@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soylediagram</title>
+</head>
+<body>
+    <canvas height="400" width="600" id="canvas"></canvas>
+
+    <script>
+        var canvas = document.querySelector("#canvas");
+
+        var dataTest = [
+            { text: "text", value: 20 },
+            { text: "text", value: 40 },
+            { text: "text", value: 60 },
+            { text: "text", value: 80 },
+            { text: "text", value: 100 }
+        ];
+
+        function drawBarChart(canvasEl, data, unit) {
+            var ctx = canvasEl.getContext("2d");
+            canvasEl.width = data.length * 80;
+
+            var maxValue = Math.max(...data);
+
+            for (var i = 0; i < data.length; i++) {
+                var xPosBar = 0;
+                var xPosText = 0;
+            }
+        }
+    </script>
+</body>
+</html>
