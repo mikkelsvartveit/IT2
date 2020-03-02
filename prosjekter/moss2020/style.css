@@ -1,10 +1,14 @@
 * {
-    font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Montserrat, 'Segoe UI', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
+    color: #333;
     line-height: 1.6;
     margin: 0;
 }
@@ -12,34 +16,67 @@ body {
 nav {
     height: 70px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
 }
 
 nav a {
-    color: inherit;
+    color: #444;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 600;
     margin: 0 20px;
+    transition-duration: 0.1s;
+}
+
+nav a:hover {
+    color: #999;
+}
+
+nav a img {
+    height: 50px;
 }
 
 h1 {
-    font-size: 42px;
+    font-size: 58px;
     font-weight: 300;
 }
 
+h2 {
+    font-size: 28px;
+}
+
 #cover {
-    height: 300px;
-    background-color: #ddd;
+    height: 50vh;
+    color: #fff;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(cover.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#cover img {
+    height: 200px;
+}
+
 .content {
     max-width: 800px;
     margin: auto;
+}
+
+#info {
+    font-weight: 600;
+    margin: 60px 0 30px 0;
 }
 
 #arrangementer {
@@ -48,19 +85,27 @@ h1 {
     align-items: center;
 }
 
+#arrangementer input {
+    font-size: 14px;
+    width: 300px;
+    border: 2px solid #444;
+    padding: 10px 15px;
+}
+
 .event {
     max-width: 600px;
-    height: 150px;
+    height: 200px;
     display: flex;
     align-items: center;
     font-size: 14px;
-    margin: 20px 0;
+    margin: 30px 0;
     box-shadow: 0 0 8px #888;
 }
 
 .event img {
-    width: 40%;
-    height: 150px;
+    flex-basis: 250px;
+    flex-shrink: 0;
+    height: 100%;
 }
 
 .event .event-text {
@@ -68,11 +113,20 @@ h1 {
 }
 
 .event .event-text h3 {
-    margin: 10px 0 0 0;
+    margin: 0;
 }
 
 .event button {
+    color: #444;
+    font-weight: 600;
     background-color: transparent;
-    border: none;
-    width: 100px;
+    display: block;
+    margin: auto;
+    border: 2px solid #444;
+    padding: 10px 15px;
+    transition-duration: 0.1s;
+}
+
+.event button:hover {
+    background-color: #ddd;
 }
