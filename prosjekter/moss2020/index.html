@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Moss 2020</title>
 
@@ -15,9 +14,9 @@
     <nav>
         <div class="nav-content">
             <div class="nav-left">
-                <a href="index.html"><img src="logo.png" alt=""></a>
+                <a href="index.html"><img src="bilder/logo.png" alt="Moss byjubileum 2020"></a>
             </div>
-    
+
             <div class="nav-right">
                 <a href="#info">Informasjon</a>
                 <a href="#arrangementer">Arrangementer</a>
@@ -27,7 +26,7 @@
     </nav>
 
     <div id="cover">
-        <img src="logo-white.png" alt="">
+        <img src="bilder/logo-white.png" alt="">
     </div>
 
     <div class="content">
@@ -43,15 +42,27 @@
             <input type="text" placeholder="Søk etter arrangement">
 
             <div id="events-list">
-                <div class="event">
-                    <img src="https://picsum.photos/200/250" alt="Arrangement 1">
+                <div class="event hidden" id="sample-event">
+                    <img src="bilder/cover.jpg" alt="Arrangement 1">
 
                     <div class="event-text">
-                        <h3>Kulturskolekonsert (18 igjen)</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <button>Velg (kr <span class="pris">100</span>,-)</button>
+                        <h3>Navn på aktivitet</h3>
+                        <p>
+                            Kategori: <b class="kategori"></b><br>
+                            Billetter igjen: <b class="billetter"></b>
+                        </p>
+                        <button>
+                            Velg
+                            (kr <span class="pris">100</span>,-)
+                        </button>
                     </div>
                 </div>
+            </div>
+
+            <button id="gaaVidere">Gå videre</button>
+
+            <div id="kontaktInfo">
+
             </div>
         </div>
     </div>
