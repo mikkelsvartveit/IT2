@@ -47,10 +47,12 @@ nav a img {
 h1 {
     font-size: 58px;
     font-weight: 300;
+    text-align: center;
 }
 
 h2 {
     font-size: 28px;
+    text-align: center;
 }
 
 .hidden {
@@ -89,11 +91,14 @@ h2 {
     align-items: center;
 }
 
-#arrangementer input {
+input {
     font-size: 14px;
-    width: 300px;
     border: 2px solid #444;
     padding: 10px 15px;
+}
+
+input#sok {
+    width: 300px;
 }
 
 .event {
@@ -129,7 +134,7 @@ button {
     font-weight: 600;
     background-color: transparent;
     display: block;
-    width: 130px;
+    width: 150px;
     margin: auto;
     border: 2px solid #444;
     padding: 10px 15px;
@@ -145,7 +150,53 @@ button:hover {
     background-color: #444;
 }
 
-#gaaVidere {
+#gaaVidere, #bestill {
     text-transform: uppercase;
     padding: 15px;
+}
+
+#kontaktInfo {
+    width: 800px;
+    margin-top: 40px;
+}
+
+#kontaktInfo .flex {
+    display: flex;
+    justify-content: stretch;
+}
+
+#kontaktInfo .flex > * {
+   padding: 20px;
+   box-sizing: border-box;
+}
+
+#kontaktInfo .skjema {
+    width: 35%;
+}
+
+#kontaktInfo .kvittering {
+    width: 65%;
+}
+
+table.noBorder {
+    width: 100%;
+}
+
+.noBorder th {
+    text-align: left;
+    padding-top: 10px;
+}
+
+.noBorder td:nth-child(2), th:nth-child(2) {
+    width: 70px;
+}
+
+table#bestillinger {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+table#bestillinger th, table#bestillinger td {
+    border: 1px solid #000;
+    padding: 5px 10px;
 }

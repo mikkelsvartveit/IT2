@@ -39,7 +39,7 @@
         <div id="arrangementer">
             <h2>Arrangementer</h2>
 
-            <input type="text" placeholder="Søk etter arrangement">
+            <input id="sok" type="text" placeholder="Søk etter arrangement">
 
             <div id="events-list">
                 <div class="event hidden" id="sample-event">
@@ -51,7 +51,7 @@
                             Kategori: <b class="kategori"></b><br>
                             Billetter igjen: <b class="billetter"></b>
                         </p>
-                        <button>
+                        <button class="velg">
                             Velg
                             (kr <span class="pris">100</span>,-)
                         </button>
@@ -61,13 +61,36 @@
 
             <button id="gaaVidere">Gå videre</button>
 
-            <div id="kontaktInfo">
+            <div id="kontaktInfo" class="hidden">
+                <div class="flex">
+                    <div class="skjema" onsubmit="return false;">
+                        <h3>Kontaktinfo</h3>
 
+                        <b>Fornavn: </b><br><input id="fornavn" type="text" required><br><br>
+                        <b>Etternavn: </b><br><input id="etternavn" type="text" required><br><br>
+                        <b>Fødselsdato: </b><br><input id="fodselsdato" type="date" required><br><br>
+                    </div>
+
+                    <div class="kvittering">
+                        <h3>Sammendrag</h3>
+                        <table id="sammendrag" class="noBorder">
+
+                        </table>
+                        <table class="noBorder">
+                            <tr>
+                                <th>Totalt</th>
+                                <th id="totalPris"></th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <button id="bestill">Bekreft</button>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
