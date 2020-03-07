@@ -94,6 +94,7 @@ h2 {
 input {
     font-size: 14px;
     border: 2px solid #444;
+    width: 80%;
     padding: 10px 15px;
 }
 
@@ -131,6 +132,7 @@ input#sok {
 
 button {
     color: #444;
+    font-size: 14px;
     font-weight: 600;
     background-color: transparent;
     display: block;

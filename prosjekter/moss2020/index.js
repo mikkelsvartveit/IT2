@@ -80,6 +80,20 @@ for (var i = 0; i < events.length; i++) {
     eventsListEl.appendChild(eventEl);
 }
 
+// Funksjon for søk etter aktiviteter
+function sok() {
+    var sokeString = document.querySelector("#sok").value;
+    var eventEl = document.querySelector("#events-list").children;
+    for (var i = 0; i < eventEl.length; i++) {
+        // Setter display: none hvis navn på arrangement ikke matcher søk
+        if (events[i].navn.toLowerCase().includes(sokeString.toLowerCase())) {
+            eventEl[i].style.display = "flex";
+        } else {
+            eventEl[i].style.display = "none";
+        }
+    }
+}
+
 // Holder styr på hvilke aktiviteter som er valgt
 var valgteAktiviteter = [];
 function velgAktivitet() {
@@ -167,6 +181,8 @@ var buttonEl = document.querySelectorAll(".velg")
 for (var i = 0; i < buttonEl.length; i++) {
     buttonEl[i].addEventListener("click", velgAktivitet);
 }
+
+document.querySelector("#sok").addEventListener("input", sok);
 
 document.querySelector("#gaaVidere").addEventListener("click", gaaVidere);
 
