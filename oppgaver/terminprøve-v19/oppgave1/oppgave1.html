@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 1</title>
+    <link rel="stylesheet" href="../../../ressurser/style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="#">Registrer deg</a>
+        <a href="#">Handlevogn</a>
+        <a href="#">Video</a>
+    </nav>
+
+    <div class="content">
+        <h1 class="center">Registrer deg</h1>
+        <h2>Overskrift 2</h2>
+        <h3>Overskrift 3</h3>
+        <div class="form">
+            <div class="flex">
+                <div>
+                    <b>Fornavn:</b><br>
+                    <input id="fornavn" type="text" placeholder="Fornavn"><br><br>
+
+                    <b>Etternavn:</b><br>
+                    <input id="etternavn" type="text" placeholder="Etternavn"><br><br>
+
+                    <b>Postnummer:</b><br>
+                    <input id="postnummer" type="number" placeholder="Postnummer"><br><br>
+                </div>
+
+                <div>
+                    <b>E-postadresse:</b><br>
+                    <input id="epost" type="text" placeholder="E-postadresse"><br><br>
+
+                    <b>Passord:</b><br>
+                    <input id="passord1" type="password" placeholder="Passord"><br><br>
+
+                    <b>Gjenta passord:</b><br>
+                    <input id="passord2" type="password" placeholder="Gjenta passord"><br><br>
+                </div>
+            </div>
+
+            <button class="center" onclick="bestill();">Registrer</button>
+        </div>
+
+        <div class="bekreftelse">
+            <h3 class="center">Takk for at du registrerte deg, <span id="fornavn-text"></span></h3>
+            <p class="center">En bekreftelse er sendt til <b id="epost-text"></b></p>
+        </div>
+    </div>
+
+    <script src="oppgave1.js"></script>
+</body>
+
+</html>
