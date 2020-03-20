@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+    <script>
+        var divEl = document.querySelector("div");
+        var rotasjon = 0;
+        var fart = 5;
+
+        function animer() {
+            rotasjon += fart;
+            divEl.style.transform = "rotate(" + rotasjon + "deg)";
+            divEl.style.backgroundColor = "hsl(" + rotasjon + ", 100%, 70%)";
+            requestAnimationFrame(animer);
+        }
+
+        requestAnimationFrame(animer);
+    </script>
+</body>
+
+</html>
