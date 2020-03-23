@@ -9,10 +9,12 @@ function regnUt() {
         var puls70 = makspuls * 0.7;
         var puls90 = makspuls * 0.9;
 
+        // Setter inn de utregnede verdiene i DOM
         document.querySelector("#makspuls").innerHTML = Math.round(makspuls);
         document.querySelector("#puls-70").innerHTML = Math.round(puls70);
         document.querySelector("#puls-90").innerHTML = Math.round(puls90);
 
+        // Viser resultat
         document.querySelector("#resultat").classList.remove("hide");
     }
 

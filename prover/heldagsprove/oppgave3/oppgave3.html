@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 3</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="../oppgave1/oppgave1.html">Oppgave 1</a>
+        <a href="../oppgave2/oppgave2.html">Oppgave 2</a>
+        <a href="../oppgave3/oppgave3.html">Oppgave 3</a>
+    </nav>
+
+    <div class="content">
+        <h1 class="text-center">Oppgave 3</h1>
+
+        <div class="flex-2">
+            <div id="registrering">
+                <h2>Registrer utøver</h2>
+                <h3>Fornavn: </h3>
+                <input type="text" id="fornavn" placeholder="Fornavn">
+
+                <h3>Etternavn: </h3>
+                <input type="text" id="etternavn" placeholder="Etternavn">
+
+                <h3>Fødselsår: </h3>
+                <input type="number" id="fodselsaar" placeholder="Fødselsår">
+
+                <h3>Øvelser:</h3>
+                <input type="checkbox" id="lop100m" name="lop100m"><label for="lop100m">100 m</label>
+                <input type="checkbox" id="lop1500m" name="lop1500m"><label for="lop1500m">1500 m</label><br>
+                <input type="checkbox" id="spyd" name="spyd"><label for="spyd">Spydkast</label>
+                <input type="checkbox" id="slegge" name="slegge"><label for="slegge">Sleggekast</label><br>
+
+                <button id="registrer-button" class="button">Registrer</button>
+                <p id="bekreftelse" class="hide">Utøver <b id="deltaker">Ola Nordmann</b> er registrert.</p>
+            </div>
+
+            <div>
+                <h2>Liste over utøvere</h2>
+
+                <span>Velg øvelse: </span>
+                <select name="ovelser" id="ovelser">
+                    <option value="alle øvelser">Alle øvelser</option>
+                    <option value="100 m">100 m</option>
+                    <option value="1500 m">1500 m</option>
+                    <option value="Spydkast">Spydkast</option>
+                    <option value="Sleggekast">Sleggekast</option>
+                </select>
+
+                <h3>Utøvere i <span id="ovelse">alle øvelser</span>:</h3>
+                <ul id="utovere"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="oppgave3.js"></script>
+</body>
+
+</html>
