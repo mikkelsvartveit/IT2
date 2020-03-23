@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 2</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="../oppgave1/oppgave1.html">Oppgave 1</a>
+        <a href="../oppgave2/oppgave2.html">Oppgave 2</a>
+        <a href="../oppgave3/oppgave3.html">Oppgave 3</a>
+    </nav>
+
+    <div class="content">
+        <h1 class="text-center">Oppgave 2</h1>
+        <h3 class="text-center">Skriv inn alder for å regne ut estimert makspuls.</h3>
+
+        <div class="flex-center">
+            <input id="alder-input" type="number" placeholder="Din alder">
+            <button id="regnut-knapp" class="button">Regn ut</button>
+        </div>
+
+        <div id="resultat" class="text-center hide">
+            <p>Din estimerte makspuls er <b id="makspuls">200</b> hjerteslag i minuttet.</p>
+            <p>70% av din makspuls er <b id="puls-70">200</b> hjerteslag i minuttet.</p>
+            <p>90% av din makspuls er <b id="puls-90">200</b> hjerteslag i minuttet.</p>
+        </div>
+    </div>
+
+    <script src="oppgave2.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 1</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="../oppgave1/oppgave1.html">Oppgave 1</a>
+        <a href="../oppgave2/oppgave2.html">Oppgave 2</a>
+        <a href="../oppgave3/oppgave3.html">Oppgave 3</a>
+    </nav>
+
+    <div class="content">
+        <h1 class="text-center">Oppgave 1</h1>
+
+        <h3 class="text-center">Trykk på et instrument for å spille av video:</h3>
+        <div id="band-img">
+            <img src="band.jpg" alt="Band">
+            <button id="bass-button"></button>
+            <button id="gitar-button"></button>
+        </div>
+
+        <div id="bass" class="text-center hide">
+            <h2>Bass</h2>
+            <video id="bass-video" width="640" height="360" controls loop>
+                <source src="bass.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="gitar" class="text-center hide">
+            <h2>Gitar</h2>
+            <video id="gitar-video" width="640" height="360" controls loop>
+                <source src="gitar.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <script src="oppgave1.js"></script>
+</body>
+
+</html>
