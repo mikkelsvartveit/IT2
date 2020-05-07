@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helikopterspill</title>
+
+    <style>
+        #canvas {
+            background-color: #ddd;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <script>
+        var HINDRING_ÅPNING = 300;
+        var HINDRING_AVSTAND = 400;
+        var HELIKOPTER_MAKS_FART = 5;
+        var HELIKOPTER_AKSELERASJON = 0.3;
+
+        var canvas = document.querySelector("#canvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.font = "32px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "#666";
+        ctx.fillText("Trykk på Enter for å starte", canvas.width / 2, canvas.height / 3);
+
+        var helikopterHoyre = new Image();
+        helikopterHoyre.src = "ressurser/helikopter-hoyre.png";
+
+        var helikopterVenstre = new Image();
+        helikopterVenstre.src = "ressurser/helikopter-venstre.png";
+
+        var helikopterLyd = new Audio("ressurser/helikopter.mp3");
+        helikopterLyd.loop = true;
+
+        var krasjLyd = new Audio("ressurser/krasj.mp3");
+
+        var leftKeyDown = false;
+        var rightKeyDown = false;
+        var helikopterImg = helikopterHoyre;
+
+        function startSpill() {
+            cancelAnimationFrame(animasjon);
+
+            var xPos = 200;
+            var yPos = 300;
+            var xFart = 0;
+            var xAkselerasjon = 0;
+
+            helikopterLyd.play();
+
+            function Hindring() {
+                this.xPos = Math.random() * (canvas.width - HINDRING_ÅPNING);
+                this.yPos = -200;
+
+                this.tegn = function () {
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(0, this.yPos, canvas.width, 20);
+                    ctx.clearRect(this.xPos, this.yPos - 10, HINDRING_ÅPNING, 40);
+                }
+            }
+
+            var hindringer = [];
+            var nyHindringOm = 0;
+
+            var score = 0;
+            var hastighet = 2;
+
+            function frame() {
+                hastighet += 0.001;
+                score += hastighet / 10;
+                kollisjon = false;
+
+                for (var i = 0; i < hindringer.length; i++) {
+                    var hindring = hindringer[i];
+                    hindring.yPos += hastighet;
+
+                    if (yPos + 67 < hindring.yPos || yPos > hindring.yPos + 20) {
+
+                    } else if (xPos > hindring.xPos && xPos + 100 < hindring.xPos + HINDRING_ÅPNING) {
+
+                    } else {
+                        kollisjon = true;
+                    }
+                }
+
+                nyHindringOm -= hastighet;
+                if (nyHindringOm <= 0) {
+                    hindringer.push(new Hindring);
+                    nyHindringOm = HINDRING_AVSTAND;
+                }
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                for (var i = 0; i < hindringer.length; i++) {
+                    hindringer[i].tegn();
+                }
+
+                ctx.drawImage(helikopterImg, xPos, yPos, 100, 67);
+
+                ctx.font = "32px sans-serif";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+                ctx.fillStyle = "#666";
+                ctx.fillText(Math.round(score) + " m", canvas.width / 2, 10);
+
+                if (leftKeyDown && xFart > -HELIKOPTER_MAKS_FART) {
+                    xAkselerasjon = -HELIKOPTER_AKSELERASJON;
+                } else if (rightKeyDown && xFart < HELIKOPTER_MAKS_FART) {
+                    xAkselerasjon = HELIKOPTER_AKSELERASJON;
+                } else if (xFart > 0) {
+                    xAkselerasjon = -0.05;
+                } else if (xFart < 0) {
+                    xAkselerasjon = 0.05;
+                } else {
+                    xAkselerasjon = 0;
+                }
+
+
+                xFart += xAkselerasjon;
+                xPos += xFart;
+
+                if (kollisjon) {
+                    helikopterLyd.pause();
+                    krasjLyd.play();
+
+                    ctx.font = "32px sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText("Trykk på Enter for å starte på nytt", canvas.width / 2, canvas.height / 3);
+                } else {
+                    requestAnimationFrame(frame);
+                }
+            }
+
+            var animasjon = requestAnimationFrame(frame);
+        }
+
+        window.onkeydown = function (e) {
+            if (e.key == "ArrowLeft") {
+                leftKeyDown = true;
+                helikopterImg = helikopterVenstre;
+            } else if (e.key == "ArrowRight") {
+                rightKeyDown = true;
+                helikopterImg = helikopterHoyre;
+            } else if (e.key == "Enter") {
+                startSpill();
+            }
+        }
+
+        window.onkeyup = function (e) {
+            if (e.key == "ArrowLeft") {
+                leftKeyDown = false;
+            } else if (e.key == "ArrowRight") {
+                rightKeyDown = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
