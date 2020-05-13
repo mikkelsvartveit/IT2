@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="ressurser/favicon.ico">
     <title>Helikopterspill</title>
 
     <style>
         #canvas {
-            background-color: #ddd;
+            background-color: hsl(203, 68%, 95%);
             display: block;
-            margin: auto;
+            margin: 20px auto;
+            box-shadow: 0 0 5px #888;
         }
     </style>
 </head>
@@ -51,7 +53,7 @@
         function startSpill() {
             cancelAnimationFrame(animasjon);
 
-            var xPos = 200;
+            var xPos = 270;
             var yPos = 300;
             var xFart = 0;
             var xAkselerasjon = 0;
@@ -63,7 +65,8 @@
                 this.yPos = -200;
 
                 this.tegn = function () {
-                    ctx.fillStyle = "red";
+                    ctx.fillStyle = "#bd2b1a";
+                    ctx.fillStyle = "hsl(14, 90%, 60%)";
                     ctx.fillRect(0, this.yPos, canvas.width, 20);
                     ctx.clearRect(this.xPos, this.yPos - 10, HINDRING_ÅPNING, 40);
                 }
@@ -84,11 +87,8 @@
                     var hindring = hindringer[i];
                     hindring.yPos += hastighet;
 
-                    if (yPos + 67 < hindring.yPos || yPos > hindring.yPos + 20) {
-
-                    } else if (xPos > hindring.xPos && xPos + 100 < hindring.xPos + HINDRING_ÅPNING) {
-
-                    } else {
+                    if (!((yPos + 67 - 5 < hindring.yPos || yPos + 5 > hindring.yPos + 20) ||
+                        (xPos + 5 > hindring.xPos && xPos + 100 - 5 < hindring.xPos + HINDRING_ÅPNING))) {
                         kollisjon = true;
                     }
                 }
@@ -111,7 +111,7 @@
                 ctx.textAlign = "center";
                 ctx.textBaseline = "top";
                 ctx.fillStyle = "#666";
-                ctx.fillText(Math.round(score) + " m", canvas.width / 2, 10);
+                ctx.fillText(Math.floor(score) + " m", canvas.width / 2, 10);
 
                 if (leftKeyDown && xFart > -HELIKOPTER_MAKS_FART) {
                     xAkselerasjon = -HELIKOPTER_AKSELERASJON;
@@ -125,12 +125,12 @@
                     xAkselerasjon = 0;
                 }
 
-
                 xFart += xAkselerasjon;
                 xPos += xFart;
 
                 if (kollisjon) {
                     helikopterLyd.pause();
+                    helikopterLyd.currentTime = 0;
                     krasjLyd.play();
 
                     ctx.font = "32px sans-serif";
