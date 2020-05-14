@@ -9,7 +9,6 @@
 
     <style>
         #canvas {
-            background-color: hsl(203, 68%, 95%);
             display: block;
             margin: 20px auto;
             box-shadow: 0 0 5px #888;
@@ -21,65 +20,80 @@
     <canvas id="canvas" width="640" height="480"></canvas>
 
     <script>
+        // Konstanter som kan endres for å påvirke spillet
+        var SPILL_STARTFART = 2;
+        var SPILL_FARTSØKNING = 0.001;
         var HINDRING_ÅPNING = 300;
         var HINDRING_AVSTAND = 400;
         var HELIKOPTER_MAKS_FART = 5;
         var HELIKOPTER_AKSELERASJON = 0.3;
 
+        // Initialiserer canvas
         var canvas = document.querySelector("#canvas");
         var ctx = canvas.getContext("2d");
 
-        ctx.font = "32px sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillStyle = "#666";
-        ctx.fillText("Trykk på Enter for å starte", canvas.width / 2, canvas.height / 3);
-
-        var helikopterHoyre = new Image();
-        helikopterHoyre.src = "ressurser/helikopter-hoyre.png";
-
-        var helikopterVenstre = new Image();
-        helikopterVenstre.src = "ressurser/helikopter-venstre.png";
-
+        // Gjør klar lyd- og bildefiler
         var helikopterLyd = new Audio("ressurser/helikopter.mp3");
         helikopterLyd.loop = true;
-
         var krasjLyd = new Audio("ressurser/krasj.mp3");
+        var helikopterHoyre = new Image();
+        helikopterHoyre.src = "ressurser/helikopter-hoyre.png";
+        var helikopterVenstre = new Image();
+        helikopterVenstre.src = "ressurser/helikopter-venstre.png";
+        var helikopterImg = helikopterHoyre;
+
+        // Viser start screen
+        ctx.fillStyle = "hsl(203, 68%, 95%)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = "bold 32px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "#000";
+        ctx.strokeText("Trykk på Enter for å starte", canvas.width / 2, canvas.height / 3);
+        ctx.fillStyle = "#fdd813";
+        ctx.fillText("Trykk på Enter for å starte", canvas.width / 2, canvas.height / 3);
+        helikopterImg.onload = function () {
+            ctx.drawImage(helikopterImg, 270, 350, 100, 67);
+        };
 
         var leftKeyDown = false;
         var rightKeyDown = false;
-        var helikopterImg = helikopterHoyre;
 
         function startSpill() {
-            cancelAnimationFrame(animasjon);
-
+            // Helikopterets posisjon, fart og akselerasjon
             var xPos = 270;
-            var yPos = 300;
+            var yPos = 350;
             var xFart = 0;
             var xAkselerasjon = 0;
 
+            // Spiller helikopterlyd i bakgrunnen
             helikopterLyd.play();
 
+            // Funksjon for å lage en ny hindring
             function Hindring() {
                 this.xPos = Math.random() * (canvas.width - HINDRING_ÅPNING);
                 this.yPos = -200;
 
                 this.tegn = function () {
-                    ctx.fillStyle = "#bd2b1a";
-                    ctx.fillStyle = "hsl(14, 90%, 60%)";
-                    ctx.fillRect(0, this.yPos, canvas.width, 20);
-                    ctx.clearRect(this.xPos, this.yPos - 10, HINDRING_ÅPNING, 40);
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = "#000";
+                    ctx.strokeRect(-10, this.yPos, this.xPos + 10, 20);
+                    ctx.strokeRect(this.xPos + HINDRING_ÅPNING, this.yPos, canvas.width, 20);
+                    ctx.fillStyle = "#fdd813";
+                    ctx.fillRect(-10, this.yPos, this.xPos + 10, 20);
+                    ctx.fillRect(this.xPos + HINDRING_ÅPNING, this.yPos, canvas.width, 20);
                 }
             }
 
             var hindringer = [];
             var nyHindringOm = 0;
 
+            var hastighet = SPILL_STARTFART;
             var score = 0;
-            var hastighet = 2;
 
             function frame() {
-                hastighet += 0.001;
+                hastighet += SPILL_FARTSØKNING;
                 score += hastighet / 10;
                 kollisjon = false;
 
@@ -99,7 +113,9 @@
                     nyHindringOm = HINDRING_AVSTAND;
                 }
 
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Tegner bakgrunn
+                ctx.fillStyle = "hsl(203, 68%, 95%)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                 for (var i = 0; i < hindringer.length; i++) {
                     hindringer[i].tegn();
@@ -107,35 +123,48 @@
 
                 ctx.drawImage(helikopterImg, xPos, yPos, 100, 67);
 
-                ctx.font = "32px sans-serif";
+                ctx.font = "bold 32px Arial";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "top";
-                ctx.fillStyle = "#666";
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = "#000";
+                ctx.strokeText(Math.floor(score) + " m", canvas.width / 2, 10);
+                ctx.fillStyle = "#fdd813";
                 ctx.fillText(Math.floor(score) + " m", canvas.width / 2, 10);
 
+                // Akselererer helikopteret hvis en piltast holdes nede
                 if (leftKeyDown && xFart > -HELIKOPTER_MAKS_FART) {
                     xAkselerasjon = -HELIKOPTER_AKSELERASJON;
                 } else if (rightKeyDown && xFart < HELIKOPTER_MAKS_FART) {
                     xAkselerasjon = HELIKOPTER_AKSELERASJON;
-                } else if (xFart > 0) {
+                }
+
+                else if (xFart > 0) {
                     xAkselerasjon = -0.05;
                 } else if (xFart < 0) {
                     xAkselerasjon = 0.05;
-                } else {
-                    xAkselerasjon = 0;
                 }
 
                 xFart += xAkselerasjon;
                 xPos += xFart;
+
+                if (xPos < -100) {
+                    xPos = canvas.width;
+                } else if (xPos > canvas.width) {
+                    xPos = -100;
+                }
 
                 if (kollisjon) {
                     helikopterLyd.pause();
                     helikopterLyd.currentTime = 0;
                     krasjLyd.play();
 
-                    ctx.font = "32px sans-serif";
+                    ctx.font = "bold 32px Arial";
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = "#000";
+                    ctx.strokeText("Trykk på Enter for å starte på nytt", canvas.width / 2, canvas.height / 3);
                     ctx.fillText("Trykk på Enter for å starte på nytt", canvas.width / 2, canvas.height / 3);
                 } else {
                     requestAnimationFrame(frame);
