@@ -43,20 +43,24 @@
         var helikopterImg = helikopterHoyre;
 
         // Viser start screen
+        var highScore = localStorage.getItem("highScore") || 0;
         ctx.fillStyle = "hsl(203, 68%, 95%)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.font = "bold 32px Arial";
+        ctx.font = "bold 26px monospace";
         ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillStyle = "#444";
+        ctx.fillText("Score: 0 m      High: " + Math.floor(highScore) + " m", canvas.width / 2, 10);
+        ctx.font = "bold 20px monospace";
         ctx.textBaseline = "middle";
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = "#000";
-        ctx.strokeText("Trykk på Enter for å starte", canvas.width / 2, canvas.height / 3);
-        ctx.fillStyle = "#fdd813";
-        ctx.fillText("Trykk på Enter for å starte", canvas.width / 2, canvas.height / 3);
+        ctx.fillText("Før helikopteret gjennom hindringene.", canvas.width / 2, 140);
+        ctx.fillText("Helikopteret styres med høyre og venstre piltast.", canvas.width / 2, 170);
+        ctx.fillText("Trykk på Space for å starte", canvas.width / 2, 230);
         helikopterImg.onload = function () {
             ctx.drawImage(helikopterImg, 270, 350, 100, 67);
         };
 
+        var spiller = false;
         var leftKeyDown = false;
         var rightKeyDown = false;
 
@@ -123,14 +127,11 @@
 
                 ctx.drawImage(helikopterImg, xPos, yPos, 100, 67);
 
-                ctx.font = "bold 32px Arial";
+                ctx.font = "bold 26px monospace";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "top";
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = "#000";
-                ctx.strokeText(Math.floor(score) + " m", canvas.width / 2, 10);
-                ctx.fillStyle = "#fdd813";
-                ctx.fillText(Math.floor(score) + " m", canvas.width / 2, 10);
+                ctx.fillStyle = "#444";
+                ctx.fillText("Score: " + Math.floor(score) + " m      High: " + Math.floor(highScore) + " m", canvas.width / 2, 10);
 
                 // Akselererer helikopteret hvis en piltast holdes nede
                 if (leftKeyDown && xFart > -HELIKOPTER_MAKS_FART) {
@@ -155,44 +156,49 @@
                 }
 
                 if (kollisjon) {
+                    spiller = false;
+
                     helikopterLyd.pause();
                     helikopterLyd.currentTime = 0;
                     krasjLyd.play();
 
-                    ctx.font = "bold 32px Arial";
+                    ctx.font = "bold 20px monospace";
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
-                    ctx.lineWidth = 4;
-                    ctx.strokeStyle = "#000";
-                    ctx.strokeText("Trykk på Enter for å starte på nytt", canvas.width / 2, canvas.height / 3);
-                    ctx.fillText("Trykk på Enter for å starte på nytt", canvas.width / 2, canvas.height / 3);
+                    ctx.fillText("Trykk på Space for å starte på nytt", canvas.width / 2, 170);
+
+                    if (score > highScore) {
+                        highScore = score;
+                        localStorage.setItem("highScore", highScore);
+                    }
                 } else {
                     requestAnimationFrame(frame);
                 }
             }
 
+            spiller = true;
             var animasjon = requestAnimationFrame(frame);
         }
 
-        window.onkeydown = function (e) {
+        window.addEventListener("keydown", function (e) {
             if (e.key == "ArrowLeft") {
                 leftKeyDown = true;
                 helikopterImg = helikopterVenstre;
             } else if (e.key == "ArrowRight") {
                 rightKeyDown = true;
                 helikopterImg = helikopterHoyre;
-            } else if (e.key == "Enter") {
+            } else if (e.key == " " && !spiller) {
                 startSpill();
             }
-        }
+        });
 
-        window.onkeyup = function (e) {
+        window.addEventListener("keyup", function (e) {
             if (e.key == "ArrowLeft") {
                 leftKeyDown = false;
             } else if (e.key == "ArrowRight") {
                 rightKeyDown = false;
             }
-        }
+        });
     </script>
 </body>
 
