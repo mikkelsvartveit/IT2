@@ -50,12 +50,13 @@
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
         ctx.fillStyle = "#444";
-        ctx.fillText("Score: 0 m      High: " + Math.floor(highScore) + " m", canvas.width / 2, 10);
+        ctx.fillText("Score: 0 m      High: " + Math.floor(highScore) + " m", canvas.width / 2, 15);
         ctx.font = "bold 20px monospace";
         ctx.textBaseline = "middle";
         ctx.fillText("Før helikopteret gjennom hindringene.", canvas.width / 2, 140);
         ctx.fillText("Helikopteret styres med høyre og venstre piltast.", canvas.width / 2, 170);
-        ctx.fillText("Trykk på Space for å starte", canvas.width / 2, 230);
+        ctx.font = "bold 24px monospace";
+        ctx.fillText("Trykk på Space for å starte.", canvas.width / 2, 250);
         helikopterImg.onload = function () {
             ctx.drawImage(helikopterImg, 270, 350, 100, 67);
         };
@@ -74,7 +75,7 @@
             // Spiller helikopterlyd i bakgrunnen
             helikopterLyd.play();
 
-            // Funksjon for å lage en ny hindring
+            // Constructor-funksjon for å lage en ny hindring
             function Hindring() {
                 this.xPos = Math.random() * (canvas.width - HINDRING_ÅPNING);
                 this.yPos = -200;
@@ -90,6 +91,7 @@
                 }
             }
 
+            // Array som holder alle hindringene
             var hindringer = [];
             var nyHindringOm = 0;
 
@@ -97,14 +99,18 @@
             var score = 0;
 
             function frame() {
+                // Øker farten gradvis, slik at det blir vanskeligere
                 hastighet += SPILL_FARTSØKNING;
                 score += hastighet / 10;
                 kollisjon = false;
 
                 for (var i = 0; i < hindringer.length; i++) {
                     var hindring = hindringer[i];
+
+                    // Flytter hindringene nedover
                     hindring.yPos += hastighet;
 
+                    // Sjekker om helikopteret har krasjet i en hindring
                     if (!((yPos + 67 - 5 < hindring.yPos || yPos + 5 > hindring.yPos + 20) ||
                         (xPos + 5 > hindring.xPos && xPos + 100 - 5 < hindring.xPos + HINDRING_ÅPNING))) {
                         kollisjon = true;
@@ -113,6 +119,7 @@
 
                 nyHindringOm -= hastighet;
                 if (nyHindringOm <= 0) {
+                    // Genererer ny hindring
                     hindringer.push(new Hindring);
                     nyHindringOm = HINDRING_AVSTAND;
                 }
@@ -121,25 +128,29 @@
                 ctx.fillStyle = "hsl(203, 68%, 95%)";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+                // Tegner alle hindringer
                 for (var i = 0; i < hindringer.length; i++) {
                     hindringer[i].tegn();
                 }
 
+                // Tegner helikopter
                 ctx.drawImage(helikopterImg, xPos, yPos, 100, 67);
 
+                // Tegner score og high score
                 ctx.font = "bold 26px monospace";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "top";
                 ctx.fillStyle = "#444";
-                ctx.fillText("Score: " + Math.floor(score) + " m      High: " + Math.floor(highScore) + " m", canvas.width / 2, 10);
+                ctx.fillText("Score: " + Math.floor(score) + " m      High: " + Math.floor(highScore) + " m", canvas.width / 2, 15);
 
-                // Akselererer helikopteret hvis en piltast holdes nede
+                // Akselererer helikopteret hvis en piltast holdes nede og maksfart ikke er nådd
                 if (leftKeyDown && xFart > -HELIKOPTER_MAKS_FART) {
                     xAkselerasjon = -HELIKOPTER_AKSELERASJON;
                 } else if (rightKeyDown && xFart < HELIKOPTER_MAKS_FART) {
                     xAkselerasjon = HELIKOPTER_AKSELERASJON;
                 }
 
+                // Simulerer luftmotstand dersom ingen av piltastene holdes inne
                 else if (xFart > 0) {
                     xAkselerasjon = -0.05;
                 } else if (xFart < 0) {
@@ -155,6 +166,7 @@
                     xPos = -100;
                 }
 
+                // Stopp spillet og vis end screen hvis helikopteret har krasjet
                 if (kollisjon) {
                     spiller = false;
 
@@ -162,16 +174,21 @@
                     helikopterLyd.currentTime = 0;
                     krasjLyd.play();
 
-                    ctx.font = "bold 20px monospace";
+                    ctx.font = "bold 32px monospace";
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
-                    ctx.fillText("Trykk på Space for å starte på nytt", canvas.width / 2, 170);
+                    ctx.fillText("GAME OVER!", canvas.width / 2, 140);
+                    ctx.font = "bold 24px monospace";
+                    ctx.fillText("Trykk på Space for å spille igjen.", canvas.width / 2, 200);
 
+                    // Sjekker for ny high score
                     if (score > highScore) {
                         highScore = score;
                         localStorage.setItem("highScore", highScore);
                     }
-                } else {
+                }
+
+                else {
                     requestAnimationFrame(frame);
                 }
             }
@@ -179,6 +196,9 @@
             spiller = true;
             var animasjon = requestAnimationFrame(frame);
         }
+
+
+        // EVENT LISTENERS:
 
         window.addEventListener("keydown", function (e) {
             if (e.key == "ArrowLeft") {
@@ -188,6 +208,7 @@
                 rightKeyDown = true;
                 helikopterImg = helikopterHoyre;
             } else if (e.key == " " && !spiller) {
+                // Starter nytt spill hvis et spill ikke allerede pågår og Space blir trykket på
                 startSpill();
             }
         });
