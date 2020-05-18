@@ -46,22 +46,24 @@
         var highScore = localStorage.getItem("highScore") || 0;
         ctx.fillStyle = "hsl(203, 68%, 95%)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.font = "bold 26px monospace";
+        ctx.font = "bold 26px Consolas, monospace";
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
         ctx.fillStyle = "#444";
         ctx.fillText("Score: 0 m      High: " + Math.floor(highScore) + " m", canvas.width / 2, 15);
-        ctx.font = "bold 20px monospace";
+        ctx.font = "bold 20px Consolas, monospace";
         ctx.textBaseline = "middle";
         ctx.fillText("Før helikopteret gjennom hindringene.", canvas.width / 2, 140);
         ctx.fillText("Helikopteret styres med høyre og venstre piltast.", canvas.width / 2, 170);
-        ctx.font = "bold 24px monospace";
+        ctx.font = "bold 24px Consolas, monospace";
         ctx.fillText("Trykk på Space for å starte.", canvas.width / 2, 250);
         helikopterImg.onload = function () {
             ctx.drawImage(helikopterImg, 270, 350, 100, 67);
         };
 
+        // Variabel som forteller som et spill pågår
         var spiller = false;
+        // Variabler som holder styr på hvilke piltaster som holdes nede
         var leftKeyDown = false;
         var rightKeyDown = false;
 
@@ -137,7 +139,7 @@
                 ctx.drawImage(helikopterImg, xPos, yPos, 100, 67);
 
                 // Tegner score og high score
-                ctx.font = "bold 26px monospace";
+                ctx.font = "bold 26px Consolas, monospace";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "top";
                 ctx.fillStyle = "#444";
@@ -157,9 +159,11 @@
                     xAkselerasjon = 0.05;
                 }
 
+                // Oppdaterer helikopterets fart og akselerasjon
                 xFart += xAkselerasjon;
                 xPos += xFart;
 
+                // Hvis helikopteret flyr utenfor kanten, kommer det inn igjen på den andre siden
                 if (xPos < -100) {
                     xPos = canvas.width;
                 } else if (xPos > canvas.width) {
@@ -174,11 +178,11 @@
                     helikopterLyd.currentTime = 0;
                     krasjLyd.play();
 
-                    ctx.font = "bold 32px monospace";
+                    ctx.font = "bold 32px Consolas, monospace";
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
                     ctx.fillText("GAME OVER!", canvas.width / 2, 140);
-                    ctx.font = "bold 24px monospace";
+                    ctx.font = "bold 24px Consolas, monospace";
                     ctx.fillText("Trykk på Space for å spille igjen.", canvas.width / 2, 200);
 
                     // Sjekker for ny high score
@@ -201,22 +205,37 @@
         // EVENT LISTENERS:
 
         window.addEventListener("keydown", function (e) {
-            if (e.key == "ArrowLeft") {
+            // Hvis venstre piltast trykkes ned
+            if (e.keyCode == 37) {
                 leftKeyDown = true;
+
+                // Snur helikopterbildet mot venstre
                 helikopterImg = helikopterVenstre;
-            } else if (e.key == "ArrowRight") {
+            }
+
+            // Hvis høyre piltast trykkes ned
+            else if (e.keyCode == 39) {
                 rightKeyDown = true;
+
+                // Snur helikopterbildet mot høyre
                 helikopterImg = helikopterHoyre;
-            } else if (e.key == " " && !spiller) {
-                // Starter nytt spill hvis et spill ikke allerede pågår og Space blir trykket på
+            }
+
+            // Hvis Space trykkes ned og et spill ikke allerede pågår
+            else if (e.keyCode == 32 && !spiller) {
+                // Starter nytt spill
                 startSpill();
             }
         });
 
         window.addEventListener("keyup", function (e) {
-            if (e.key == "ArrowLeft") {
+            // Hvis venstre piltast slippes
+            if (e.keyCode == 37) {
                 leftKeyDown = false;
-            } else if (e.key == "ArrowRight") {
+            }
+
+            // Hvis høyre piltast slippes
+            else if (e.keyCode == 39) {
                 rightKeyDown = false;
             }
         });
